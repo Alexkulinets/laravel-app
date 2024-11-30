@@ -2,61 +2,147 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('dist/src/app.css') }}"/>
     <link rel="icon" href="{{ asset('Sphere_litle.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-    <link rel="stylesheet" href="{{ asset('dist/src/app.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
     <title>S P H E R E</title>
 </head>
 <body>
-    <header id="header" class="header">
-        <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-
-        <a href="{{route('home')}}" class="logo">
-            <img src="Sphere_litle.svg" alt="">
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-            <ul>
-            <li><a href="{{route('home')}}">Home</a></li>
-            <li><a href="{{route('pricing')}}">Pricing</a></li>
-            <li class="dropdown"><a href="{{ route('home') }}#events"><span>Events</span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                    <li><a href="#">Dropdown 1</a></li>
-                    <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
-          <li><a href="{{ route('home') }}#contact">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-      <div class="register-login-section">
-        <a class="btn-getstarted login" href="{{route('home')}}">Login</a>
-        <a class="btn-getstarted register" href="{{route('home')}}">Sing Up Now</a>
+  <header id="header" class="header active-page">
+    <div class="header-container">
+      <div id="burger-menu" class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <div class="cart-section" >
-        <a href="{{route('home')}}" ><img class="cart-route-button" src="./dist/img/cart.svg" alt=""></a>
+      <div class="nav-logo-container">
+        <div class="nav-filter-container">
+          <a href="{{ route('home') }}" class="logo">
+            <img class="logo-image" src="Sphere_litle.svg" alt="">
+          </a>
+        </div>
+        <a class="cart-route-position" href="{{ route('cart') }}">
+          <img class="cart-route-button" src="./dist/img/cart.svg" alt="">
+        </a>
+        <nav id="navmenu" class="navmenu">
+            <div class="register-login-section nav">
+              <a class="btn-getstarted login" href="{{ route('home') }}">Login</a>
+              <a class="btn-getstarted register" href="{{ route('home') }}">Sign Up Now</a>
+            </div>
+            <ul>
+              <li><a href="{{ route('home') }}">Home</a></li>
+              <li><a href="{{ route('pricing') }}">Pricing</a></li>
+              <li class="dropdown"><a href="{{ route('home') }}#events"><span>Events</span><i class="bi bi-chevron-down toggle-dropdown"></i></a></li>
+              <li><a href="{{ route('home') }}#contact">Contact</a></li>
+            </ul>
+            <div class="close-btn">×</div>
+        </nav>
+        </div>
       </div>
     </div>
   </header>
+
     
-    
-    
-    
+
+
     @yield('content')
     @if (request()->routeIs('home'))
-
+    <div class="categories-container" id="categories">
+        <div class="categories-section-container">
+          <h1 class="categories-name">Categories</h1>
+          <div class="all-categories">
+            <div class="categories-product-icon-container">
+              <div class="product-icons">
+                <img src="./dist/img/Categories.svg" alt="">
+              </div>
+              <h3 class="categories-box-text" style="font-size: 14px; font-weight: 400">All products</h3>
+            </div>
+            <div class="categories-product-icon-container">
+              <div class="product-icons">
+                <img src="./dist/img/PC.svg" alt="">
+              </div>
+              <h3 class="categories-box-text" style="font-size: 14px; font-weight: 400">Iphone 11</h3>
+            </div>
+            <div class="categories-product-icon-container">
+              <div class="product-icons">
+                <img src="./dist/img/Camera.svg" alt="">
+              </div>
+              <h3 class="categories-box-text" style="font-size: 14px; font-weight: 400">Iphone 12</h3>
+            </div>
+          </div>
+        </div>
+        <div class="all-products-section-container">
+            <div class="all-products-search-section">
+              <a>
+                <input class="search-input all-products" type="text" placeholder="Я шукаю..." id="search-input">
+              </a>
+            </div>
+            <div class="categories products-section">
+              <div class="all-products-section-lines">
+                <div class="all-products-products-section">
+                  <div class="card all-products">
+                    <a href="{{ route('product', ['id' => 5]) }}" class="card-section image all-products" id="image-container-5"></a>
+                    <div class="card-section all-products">
+                      <a href="{{ route('product', ['id' => 5]) }}" class="card-section-name all-products" style="color: #000">
+                        <div id="text-container-5"></div>
+                        <div id="cost-container-5"></div>
+                      </a>
+                      <h3 class="card-section-description all-products">
+                        <span id="desc-container-5"></span>
+                      </h3>
+                      <div class="card-section-stars">
+                        <div class="star-box">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                        </div>
+                        <div class="amount card-section-description">(121)</div>
+                      </div>
+                      <a href="{{ route('product', ['id' => 5]) }}" class="card-section-add all-products">
+                        <img src="./dist/img/cart.svg" alt="">
+                        Add to Cart
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="all-products-products-section">
+                  <div class="card all-products">
+                    <a href="{{ route('product', ['id' => 6]) }}" class="card-section image all-products" id="image-container-6"></a>
+                    <div class="card-section all-products">
+                      <a href="{{ route('product', ['id' => 6]) }}" class="card-section-name all-products" style="color: #000">
+                        <div id="text-container-6"></div>
+                        <div id="cost-container-6"></div>
+                      </a>
+                      <h3 class="card-section-description all-products">
+                        <span id="desc-container-6"></span>
+                      </h3>
+                      <div class="card-section-stars">
+                        <div class="star-box">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                          <img src="./dist/img/star.svg" alt="" class="star">
+                        </div>
+                        <div class="amount card-section-description">(121)</div>
+                      </div>
+                      <a href="{{ route('product', ['id' => 6]) }}" class="card-section-add all-products">
+                        <img src="./dist/img/cart.svg" alt="">
+                        Add to Cart
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
     <div class="slider-container">
         <div class="slider-container-section">
             <div class="slider-section-name">
@@ -157,224 +243,247 @@
         <div class="card-container-section">
             <div class="card-content">
               <div class="card">
-                <a href="{{route('product')}}" class="card-section image">
-                    <img class="card-product-image" src="{{asset ('https://content1.rozetka.com.ua/goods/images/big/364623744.jpg') }}" alt="">
-                </a>
+                <a href="{{ route('product', ['id' => 1]) }}" class="card-section image" id="image-container-1"></a>
                 <div class="card-section">
-                  <a href="{{route('product')}}" class="card-section-name" style="color: #000">
-                    Xiphone 14 Pro Maxe <div class="card-section-name-cost">$175.00</div>
-                  </a>
-                  <h3 class="card-section-description">
-                    Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.
-                  </h3>
-                  <div class="card-section-stars">
-                    <div class="star-box">
-                    <img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star">
+                    <a href="{{ route('product', ['id' => 1]) }}" class="card-section-name" style="color: #000">
+                        <div id="text-container-1"></div>
+                        <div id="cost-container-1"></div>
+                    </a>
+                    <h3 class="card-section-description">
+                      <div id="desc-container-1"></div>                
+                    </h3>
+                    <div class="card-section-stars">
+                        <div class="star-box">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                        </div>
+                        <div class="amount card-section-description">(121)</div>
                     </div>
-                    <div class="amout card-section-description">(121)</div>
-                  </div>
-                  <div class="card-section-add">
-                    <img src="./dist/img/cart.svg" alt="">
-                    Add to Cart
-                  </div>
+                    <a href="{{route('product', ['id' => 1])}}" class="card-section-add" >
+                      <img src="./dist/img/cart.svg" alt="">
+                      Add to Cart
+                    </a>
                 </div>
               </div>
               <div class="card">
-                <a href="{{route('product')}}" id="card" class="card-section image">
-                  <img class="card-product-image" src="https://content.rozetka.com.ua/goods/images/big/30873693.jpg" alt="">
-                </a>
-                <div class="card-section">
-                  <a href="{{route('product')}}" class="card-section-name" style="color: #000">
-                    Xiphone 13 Pro Maxe <div class="card-section-name-cost">$175.00</div>
-                  </a>
-                  <h3 class="card-section-description">
-                    Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.
-                  </h3>
-                  <div class="card-section-stars">
-                    <div class="star-box">
-                    <img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star">
-                    </div>
-                    <div class="amout card-section-description">(121)</div>
+                  <a href="{{ route('product', ['id' => 2]) }}" class="card-section image" id="image-container-2"></a>
+                  <div class="card-section">
+                      <a href="{{ route('product', ['id' => 2]) }}" class="card-section-name" style="color: #000">
+                          <div id="text-container-2"></div>
+                          <div id="cost-container-2"></div>
+                      </a>
+                      <h3 class="card-section-description">
+                        <div id="desc-container-2"></div>                
+                      </h3>
+                      <div class="card-section-stars">
+                          <div class="star-box">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                          </div>
+                          <div class="amount card-section-description">(121)</div>
+                      </div>
+                      <a href="{{route('product', ['id' => 2])}}" class="card-section-add" >
+                        <img src="./dist/img/cart.svg" alt="">
+                        Add to Cart
+                      </a>
                   </div>
-                  <div class="card-section-add">
-                    <img src="./dist/img/cart.svg" alt="">
-                    Add to Cart
-                  </div>
-                </div>
               </div>
               <div class="card">
-                <a href="{{route('product')}}" id="card" class="card-section image">
-                  <img class="card-product-image" src="https://content1.rozetka.com.ua/goods/images/big/364827001.jpg" alt="">
-                </a>
-                <div class="card-section">
-                  <a href="{{route('product')}}" class="card-section-name" style="color: #000">
-                    Xiphone 12 Pro Maxe <div class="card-section-name-cost">$175.00</div>
-                  </a>
-                  <h3 class="card-section-description">
-                    Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.
-                  </h3>
-                  <div class="card-section-stars">
-                    <div class="star-box">
-                    <img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star">
-                    </div>
-                    <div class="amout card-section-description">(121)</div>
+                  <a href="{{ route('product', ['id' => 3]) }}" class="card-section image" id="image-container-3"></a>
+                  <div class="card-section">
+                      <a href="{{ route('product', ['id' => 3]) }}" class="card-section-name" style="color: #000">
+                          <div id="text-container-3"></div>
+                          <div id="cost-container-3"></div>
+                      </a>
+                      <h3 class="card-section-description">
+                        <div id="desc-container-3"></div>                
+                      </h3>
+                      <div class="card-section-stars">
+                          <div class="star-box">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                          </div>
+                          <div class="amount card-section-description">(121)</div>
+                      </div>
+                      <a href="{{route('product', ['id' => 3])}}" class="card-section-add" >
+                        <img src="./dist/img/cart.svg" alt="">
+                        Add to Cart
+                      </a>
                   </div>
-                  <div class="card-section-add">
-                    <img src="./dist/img/cart.svg" alt="">
-                    Add to Cart
-                  </div>
-                </div>
               </div>
               <div class="card">
-                <a href="{{route('product')}}" id="card" class="card-section image">
-                  <img class="card-product-image" src="https://content1.rozetka.com.ua/goods/images/big/364827001.jpg" alt="">
-                </a>
-                <div class="card-section">
-                  <a href="{{route('product')}}" class="card-section-name" style="color: #000">
-                    Xiphone 11 Pro Maxe <div class="card-section-name-cost">$175.00</div>
-                  </a>
-                  <h3 class="card-section-description">
-                    Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.
-                  </h3>
-                  <div class="card-section-stars">
-                    <div class="star-box">
-                    <img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star">
-                    </div>
-                    <div class="amout card-section-description">(121)</div>
+                  <a href="{{ route('product', ['id' => 4]) }}" class="card-section image" id="image-container-4"></a>
+                  <div class="card-section">
+                      <a href="{{ route('product', ['id' => 4]) }}" class="card-section-name" style="color: #000">
+                          <div id="text-container-4"></div>
+                          <div id="cost-container-4"></div>
+                      </a>
+                      <h3 class="card-section-description">
+                         <div id="desc-container-4"></div>                
+                      </h3>
+                      <div class="card-section-stars">
+                          <div class="star-box">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                          </div>
+                          <div class="amount card-section-description">(121)</div>
+                      </div>
+                      <a href="{{route('product', ['id' => 4])}}" class="card-section-add" >
+                        <img src="./dist/img/cart.svg" alt="">
+                        Add to Cart
+                      </a>
                   </div>
-                  <div class="card-section-add">
-                    <img src="./dist/img/cart.svg" alt="">
-                    Add to Cart
-                  </div>
-                </div>
               </div>
             </div>
         </div>
     </div>
-    <div class="recomend-section">
-      <div class="recomend-section-container">
-          <div class="recomend-section-container-box"></div>
-          <div class="recomend-section-container-box"></div>
-      </div>
-      <div class="recomend-section-container">
-          <div class="recomend-section-container-box lower"></div>
-          <div class="recomend-section-container-box bigger"></div>
+    <div id="discount-popup" class="popup">
+      <div class="popup-content">
+        <button class="close-popup">×</button>
+        <h2>Знижка на товар!</h2>
+        <p>Отримайте знижку протягом наступної години!</p>
+        <div class="timer" id="timer">60:00</div>
+        <button class="btn-get-discount">Отримати знижку</button>
+        <p id="discount-code" style="display:none;">Ваш код знижки: <span id="code"></span></p>
       </div>
     </div>
+
+
 
     @endif
     @if (request()->routeIs('product'))
 
     <div class="card-container" id="card">
         <div class="card-container-name">
-        Specially <span class="purple-span">For </span> You
+        Todays <span class="purple-span">Best Deals</span> for you!
         </div>
-        <div class="card-nav-container product">
-          <button class="scroll-btn left-btn product">←</button>
-          <button class="scroll-btn right-btn product">→</button>
+        <div class="card-nav-container">
+          <button class="scroll-btn left-btn">←</button>
+          <button class="scroll-btn right-btn">→</button>
         </div>
         <div class="card-container-section">
             <div class="card-content">
               <div class="card">
-                <a href="{{route('product')}}" class="card-section image">
-                    <img class="card-product-image" src="https://content1.rozetka.com.ua/goods/images/big/364623744.jpg" alt="">
-                </a>
+                <a href="{{ route('product', ['id' => 1]) }}" class="card-section image" id="image-container-1"></a>
                 <div class="card-section">
-                  <a href="{{route('product')}}" class="card-section-name" style="color: #000">
-                    Xiphone 14 Pro Maxe <div class="card-section-name-cost">$175.00</div>
-                  </a>
-                  <h3 class="card-section-description">
-                    Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.
-                  </h3>
-                  <div class="card-section-stars">
-                    <div class="star-box">
-                    <img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star">
+                    <a href="{{ route('product', ['id' => 1]) }}" class="card-section-name" style="color: #000">
+                        <div id="text-container-1"></div>
+                        <div id="cost-container-1"></div>
+                    </a>
+                    <h3 class="card-section-description">
+                      <div id="desc-container-1"></div>                
+                    </h3>
+                    <div class="card-section-stars">
+                        <div class="star-box">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                            <img src="./dist/img/star.svg" alt="" class="star">
+                        </div>
+                        <div class="amount card-section-description">(121)</div>
                     </div>
-                    <div class="amout card-section-description">(121)</div>
-                  </div>
-                  <div class="card-section-add">
-                    <img src="./dist/img/cart.svg" alt="">
-                    Add to Cart
-                  </div>
+                    <a href="{{route('product', ['id' => 1])}}" class="card-section-add" >
+                      <img src="./dist/img/cart.svg" alt="">
+                      Add to Cart
+                    </a>
                 </div>
               </div>
               <div class="card">
-                <a href="{{route('product')}}" id="card" class="card-section image">
-                  <img class="card-product-image" src="https://content.rozetka.com.ua/goods/images/big/30873693.jpg" alt="">
-                </a>
-                <div class="card-section">
-                  <a href="{{route('product')}}" class="card-section-name" style="color: #000">
-                    Xiphone 13 Pro Maxe <div class="card-section-name-cost">$175.00</div>
-                  </a>
-                  <h3 class="card-section-description">
-                    Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.
-                  </h3>
-                  <div class="card-section-stars">
-                    <div class="star-box">
-                    <img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star">
-                    </div>
-                    <div class="amout card-section-description">(121)</div>
+                  <a href="{{ route('product', ['id' => 2]) }}" class="card-section image" id="image-container-2"></a>
+                  <div class="card-section">
+                      <a href="{{ route('product', ['id' => 2]) }}" class="card-section-name" style="color: #000">
+                          <div id="text-container-2"></div>
+                          <div id="cost-container-2"></div>
+                      </a>
+                      <h3 class="card-section-description">
+                        <div id="desc-container-2"></div>                
+                      </h3>
+                      <div class="card-section-stars">
+                          <div class="star-box">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                          </div>
+                          <div class="amount card-section-description">(121)</div>
+                      </div>
+                      <a href="{{route('product', ['id' => 2])}}" class="card-section-add" >
+                        <img src="./dist/img/cart.svg" alt="">
+                        Add to Cart
+                      </a>
                   </div>
-                  <div class="card-section-add">
-                    <img src="./dist/img/cart.svg" alt="">
-                    Add to Cart
-                  </div>
-                </div>
               </div>
               <div class="card">
-                <a href="{{route('product')}}" id="card" class="card-section image">
-                  <img class="card-product-image" src="https://content1.rozetka.com.ua/goods/images/big/364827001.jpg" alt="">
-                </a>
-                <div class="card-section">
-                  <a href="{{route('product')}}" class="card-section-name" style="color: #000">
-                    Xiphone 12 Pro Maxe <div class="card-section-name-cost">$175.00</div>
-                  </a>
-                  <h3 class="card-section-description">
-                    Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.
-                  </h3>
-                  <div class="card-section-stars">
-                    <div class="star-box">
-                    <img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star">
-                    </div>
-                    <div class="amout card-section-description">(121)</div>
+                  <a href="{{ route('product', ['id' => 3]) }}" class="card-section image" id="image-container-3"></a>
+                  <div class="card-section">
+                      <a href="{{ route('product', ['id' => 3]) }}" class="card-section-name" style="color: #000">
+                          <div id="text-container-3"></div>
+                          <div id="cost-container-3"></div>
+                      </a>
+                      <h3 class="card-section-description">
+                        <div id="desc-container-3"></div>                
+                      </h3>
+                      <div class="card-section-stars">
+                          <div class="star-box">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                          </div>
+                          <div class="amount card-section-description">(121)</div>
+                      </div>
+                      <a href="{{route('product', ['id' => 3])}}" class="card-section-add" >
+                        <img src="./dist/img/cart.svg" alt="">
+                        Add to Cart
+                      </a>
                   </div>
-                  <div class="card-section-add">
-                    <img src="./dist/img/cart.svg" alt="">
-                    Add to Cart
-                  </div>
-                </div>
               </div>
               <div class="card">
-                <a href="{{route('product')}}" id="card" class="card-section image">
-                  <img class="card-product-image" src="https://content1.rozetka.com.ua/goods/images/big/364827001.jpg" alt="">
-                </a>
-                <div class="card-section">
-                  <a href="{{route('product')}}" class="card-section-name" style="color: #000">
-                    Xiphone 11 Pro Maxe <div class="card-section-name-cost">$175.00</div>
-                  </a>
-                  <h3 class="card-section-description">
-                    Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.
-                  </h3>
-                  <div class="card-section-stars">
-                    <div class="star-box">
-                    <img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star"><img src="./dist/img/star.svg" alt="" class="star">
-                    </div>
-                    <div class="amout card-section-description">(121)</div>
+                  <a href="{{ route('product', ['id' => 4]) }}" class="card-section image" id="image-container-4"></a>
+                  <div class="card-section">
+                      <a href="{{ route('product', ['id' => 4]) }}" class="card-section-name" style="color: #000">
+                          <div id="text-container-4"></div>
+                          <div id="cost-container-4"></div>
+                      </a>
+                      <h3 class="card-section-description">
+                         <div id="desc-container-4"></div>                
+                      </h3>
+                      <div class="card-section-stars">
+                          <div class="star-box">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                              <img src="./dist/img/star.svg" alt="" class="star">
+                          </div>
+                          <div class="amount card-section-description">(121)</div>
+                      </div>
+                      <a href="{{route('product', ['id' => 4])}}" class="card-section-add" >
+                        <img src="./dist/img/cart.svg" alt="">
+                        Add to Cart
+                      </a>
                   </div>
-                  <div class="card-section-add">
-                    <img src="./dist/img/cart.svg" alt="">
-                    Add to Cart
-                  </div>
-                </div>
               </div>
             </div>
         </div>
     </div>
 
     @endif
-    <!--Зробити інші секції з макета-->
-    <!--Організувати базову відправку інформації покупця на пошту-->
-    <!--Розібратись з зображеннями та їхньою відповідністю-->
     <footer class="footer" id="contact">
         <div class="footer-container">
           <div class="footer-section first">
@@ -407,14 +516,15 @@
           </div>
         </div>
     </footer>
+
+
+
+    <script type="module" src="{{ asset('dist/js/app.js') }}" ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="{{ asset('dist/js/app.js') }}"></script>
-    <script>
-      AOS.init();
-    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
 </body>
 </html>
-
 
 
 

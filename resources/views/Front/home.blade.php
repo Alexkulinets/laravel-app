@@ -16,7 +16,7 @@
             <div class="home-section-bottom-left">
                 <div class="home-sec-bottom-left-name">Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.</div>
                 <div class="home-sec-bottom-left-image-box">
-                    <img src="./dist/img/home_section_phone_image.png" alt="">
+                    <img  src="./dist/img/home_section_phone_image.png" alt="">
                     <h2 class="image-box-name">
                         Xiphone 14 
                         Edition
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="home-image-section">
-            <img class="home-image-iphone" src="./dist/img/iphone-home-image.png" alt="" data-aos="fade-up" data-aos-duration="800" >
+            <img class="home-image-iphone" src="./dist/img/iphone-home-image.png" alt="" data-aos="fade-up" data-aos-duration="800">
         </div>
     </div>
 </main>
