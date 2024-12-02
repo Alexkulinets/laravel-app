@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     searchInput.addEventListener('input', filterProducts);
 
-
     categoryItems.forEach(category => {
         category.addEventListener('click', function () {
 
@@ -40,4 +39,5 @@ document.addEventListener("DOMContentLoaded", () => {
             filterProducts();
         });
     });
+    
 });

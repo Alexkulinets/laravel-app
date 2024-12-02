@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -21,8 +21,14 @@ class HomeController extends Controller
     }
     public function home()
     {
-        $products = DB::table('product')->get();
-        return view('front.home', ['products' => $products]);
+        $products = DB::table('product')->get(); 
+        $categories = Category::tree()->get()->toTree();
+        
+        return view('front.home', [
+            'products' => $products,
+            'categories' => $categories
+        ]);
     }
+    
     
 }

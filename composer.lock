@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "589cc0f65c3aaa7d4e9024d545bc1974",
+    "content-hash": "599d8aae74f0a11f9ccfeb9a70a5135d",
     "packages": [
         {
             "name": "brick/math",
@@ -3115,6 +3115,180 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "staudenmeir/eloquent-has-many-deep-contracts",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/staudenmeir/eloquent-has-many-deep-contracts.git",
+                "reference": "3ad76c6eeda60042f262d113bf471dcce584d88b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/staudenmeir/eloquent-has-many-deep-contracts/zipball/3ad76c6eeda60042f262d113bf471dcce584d88b",
+                "reference": "3ad76c6eeda60042f262d113bf471dcce584d88b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^11.0",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\EloquentHasManyDeepContracts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Contracts for staudenmeir/eloquent-has-many-deep",
+            "support": {
+                "issues": "https://github.com/staudenmeir/eloquent-has-many-deep-contracts/issues",
+                "source": "https://github.com/staudenmeir/eloquent-has-many-deep-contracts/tree/v1.2.1"
+            },
+            "time": "2024-09-25T18:24:22+00:00"
+        },
+        {
+            "name": "staudenmeir/laravel-adjacency-list",
+            "version": "v1.21",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/staudenmeir/laravel-adjacency-list.git",
+                "reference": "d68df386b0e53bb755b478c76a6bcf0dfbf6f31c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/staudenmeir/laravel-adjacency-list/zipball/d68df386b0e53bb755b478c76a6bcf0dfbf6f31c",
+                "reference": "d68df386b0e53bb755b478c76a6bcf0dfbf6f31c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^11.0",
+                "php": "^8.2",
+                "staudenmeir/eloquent-has-many-deep-contracts": "^1.2",
+                "staudenmeir/laravel-cte": "^1.11"
+            },
+            "require-dev": {
+                "barryvdh/laravel-ide-helper": "^3.0",
+                "larastan/larastan": "^2.0",
+                "mockery/mockery": "^1.5.1",
+                "orchestra/testbench": "^9.0",
+                "phpunit/phpunit": "^10.5",
+                "staudenmeir/eloquent-has-many-deep": "^1.20"
+            },
+            "suggest": {
+                "barryvdh/laravel-ide-helper": "Provide type hints for attributes and relations."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-l11": "1.21.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Staudenmeir\\LaravelAdjacencyList\\IdeHelperServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\LaravelAdjacencyList\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Recursive Laravel Eloquent relationships with CTEs",
+            "support": {
+                "issues": "https://github.com/staudenmeir/laravel-adjacency-list/issues",
+                "source": "https://github.com/staudenmeir/laravel-adjacency-list/tree/v1.21"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/JonasStaudenmeir",
+                    "type": "custom"
+                }
+            ],
+            "time": "2024-03-09T10:26:40+00:00"
+        },
+        {
+            "name": "staudenmeir/laravel-cte",
+            "version": "v1.11.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/staudenmeir/laravel-cte.git",
+                "reference": "81a172596e8e222170e371fd680e153425a9500c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/staudenmeir/laravel-cte/zipball/81a172596e8e222170e371fd680e153425a9500c",
+                "reference": "81a172596e8e222170e371fd680e153425a9500c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^11.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "harrygulliford/laravel-firebird": "^3.3",
+                "laravel/framework": "^11.0",
+                "orchestra/testbench-core": "^9.5",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^11.0",
+                "singlestoredb/singlestoredb-laravel": "^1.5.4",
+                "yajra/laravel-oci8": "^11.2.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Staudenmeir\\LaravelCte\\DatabaseServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\LaravelCte\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Laravel queries with common table expressions",
+            "support": {
+                "issues": "https://github.com/staudenmeir/laravel-cte/issues",
+                "source": "https://github.com/staudenmeir/laravel-cte/tree/v1.11.2"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/JonasStaudenmeir",
+                    "type": "custom"
+                }
+            ],
+            "time": "2024-11-24T13:36:31+00:00"
         },
         {
             "name": "symfony/clock",

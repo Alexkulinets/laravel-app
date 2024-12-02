@@ -664,6 +664,7 @@ main.pricing-section
 .section-container
   display: flex
   gap: 30px
+  max-width: 2000px
   width: 1200px
   border-bottom: 3px solid #cbcbcb
   background: #fff
@@ -1213,21 +1214,23 @@ main.success
   width: 100%
   max-width: 1200px
   padding: 0 20px
-  height: 100vh 
+  height: auto 
   display: flex
+  box-sizing: border-box
   
 .categories-section-container
   padding: 20px 0
   width: 20%
   height: 100%
   border-right: 3px solid  var(--home-sec-bg)
+  box-sizing: border-box
 
 .all-categories
   height: 75%
   display: flex
-  gap: 20px
   flex-direction: column
-
+  gap: 10px
+  
 .categories-product-icon-container
   display: flex
   align-items: center
@@ -1241,6 +1244,7 @@ main.success
   width: max-content
   display: flex
   gap: 30px
+  margin-top: 20px
 
 .card.all-products
   width: 300px
@@ -1263,14 +1267,37 @@ main.success
 .card-section.image.all-products
   width: 240px
   height: 280px
+  
+.child-container
+  display: flex
+  flex-direction: column
+  padding: 0 20px
+  transition: max-height 0.3s ease, opacity 0.3s ease
+  overflow: hidden
+  max-height: 0 
+  opacity: 0  
+
+.child-container.hidden
+  display: none  
+  
+.child-container.visible
+  display: block
+  max-height: 5000px  
+  opacity: 1  
+
+.child-category
+  width: auto
+  text-align: end
+  margin-bottom: 10px
+
 
 .categories-product-icon-container
   display: flex
   align-items: center
   gap: 10px
-  height: 50px
   width: 100%
   transition: color 0.75s ease
+
 
   .product-icons
     cursor: pointer
@@ -1281,6 +1308,7 @@ main.success
     align-items: center
     border-radius: 52px
     transition: background 0.75s ease, color 0.75s ease, transform 0.75s ease
+
 
     img
       filter: brightness(0)
@@ -1294,6 +1322,7 @@ main.success
     font-weight: 400
     color: #000  
     transition: color 0.75s ease
+
 
   &:hover
     .product-icons
@@ -1925,8 +1954,8 @@ footer.footer
 
 
   .star-box > img
-    width: 10px
-    height: 10px
+    width: 15px
+    height: 15px
 
   .card-section-add.all-products
     height: 40px
@@ -2781,6 +2810,10 @@ footer.footer
     transform: 0.75s 
     border: none
 
+  .card-section.all-products 
+    width: 240px
+
+
 
   .scroll-btn, .back-button 
     background-color: #fff
@@ -2890,6 +2923,7 @@ footer.footer
   //-----------categories-section-------------------//  
   .categories-name
     font-size: 24px
+  
   //footer-section-adaptive
   
   footer.footer
@@ -2948,6 +2982,9 @@ footer.footer
 
   .product-section-footer
     width: 1000px         
+
+  .section-container
+    width: 1000px
 
   .send-section
     width: 1000px

@@ -45,35 +45,19 @@
       </div>
     </div>
   </header>
-
-    
+      
 
 
     @yield('content')
-    @if (request()->routeIs('home'))
+    @if (request()->routeIs('home'))       
     <div class="categories-container" id="categories">
         <div class="categories-section-container">
-          <h1 class="categories-name">Categories</h1>
-          <div class="all-categories">
-            <div class="categories-product-icon-container">
-              <div class="product-icons">
-                <img src="./dist/img/Categories.svg" alt="">
-              </div>
-              <h3 class="categories-box-text" style="font-size: 14px; font-weight: 400">All products</h3>
+            <h1 class="categories-name">Categories</h1>
+            <div class="all-categories">
+                @foreach($categories as $category)
+                    <x-category-item :category="$category" />
+                @endforeach
             </div>
-            <div class="categories-product-icon-container">
-              <div class="product-icons">
-                <img src="./dist/img/PC.svg" alt="">
-              </div>
-              <h3 class="categories-box-text" style="font-size: 14px; font-weight: 400">Iphone 11</h3>
-            </div>
-            <div class="categories-product-icon-container">
-              <div class="product-icons">
-                <img src="./dist/img/Camera.svg" alt="">
-              </div>
-              <h3 class="categories-box-text" style="font-size: 14px; font-weight: 400">Iphone 12</h3>
-            </div>
-          </div>
         </div>
         <div class="all-products-section-container">
             <div class="all-products-search-section">
@@ -83,63 +67,11 @@
             </div>
             <div class="categories products-section">
               <div class="all-products-section-lines">
-                <div class="all-products-products-section">
-                  <div class="card all-products">
-                    <a href="{{ route('product', ['id' => 5]) }}" class="card-section image all-products" id="image-container-5"></a>
-                    <div class="card-section all-products">
-                      <a href="{{ route('product', ['id' => 5]) }}" class="card-section-name all-products" style="color: #000">
-                        <div id="text-container-5"></div>
-                        <div id="cost-container-5"></div>
-                      </a>
-                      <h3 class="card-section-description all-products">
-                        <span id="desc-container-5"></span>
-                      </h3>
-                      <div class="card-section-stars">
-                        <div class="star-box">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                        </div>
-                        <div class="amount card-section-description">(121)</div>
-                      </div>
-                      <a href="{{ route('product', ['id' => 5]) }}" class="card-section-add all-products">
-                        <img src="./dist/img/cart.svg" alt="">
-                        Add to Cart
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="all-products-products-section">
-                  <div class="card all-products">
-                    <a href="{{ route('product', ['id' => 6]) }}" class="card-section image all-products" id="image-container-6"></a>
-                    <div class="card-section all-products">
-                      <a href="{{ route('product', ['id' => 6]) }}" class="card-section-name all-products" style="color: #000">
-                        <div id="text-container-6"></div>
-                        <div id="cost-container-6"></div>
-                      </a>
-                      <h3 class="card-section-description all-products">
-                        <span id="desc-container-6"></span>
-                      </h3>
-                      <div class="card-section-stars">
-                        <div class="star-box">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                          <img src="./dist/img/star.svg" alt="" class="star">
-                        </div>
-                        <div class="amount card-section-description">(121)</div>
-                      </div>
-                      <a href="{{ route('product', ['id' => 6]) }}" class="card-section-add all-products">
-                        <img src="./dist/img/cart.svg" alt="">
-                        Add to Cart
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                @foreach($products->whereNotIn('id', [1, 2, 3, 4]) as $product)
+                    <x-categorys-products-items :product="$product" />
+                @endforeach
               </div>
+            </div>
         </div>
       </div>
     </div>
@@ -242,110 +174,9 @@
         </div>
         <div class="card-container-section">
             <div class="card-content">
-              <div class="card">
-                <a href="{{ route('product', ['id' => 1]) }}" class="card-section image" id="image-container-1"></a>
-                <div class="card-section">
-                    <a href="{{ route('product', ['id' => 1]) }}" class="card-section-name" style="color: #000">
-                        <div id="text-container-1"></div>
-                        <div id="cost-container-1"></div>
-                    </a>
-                    <h3 class="card-section-description">
-                      <div id="desc-container-1"></div>                
-                    </h3>
-                    <div class="card-section-stars">
-                        <div class="star-box">
-                            <img src="./dist/img/star.svg" alt="" class="star">
-                            <img src="./dist/img/star.svg" alt="" class="star">
-                            <img src="./dist/img/star.svg" alt="" class="star">
-                            <img src="./dist/img/star.svg" alt="" class="star">
-                            <img src="./dist/img/star.svg" alt="" class="star">
-                        </div>
-                        <div class="amount card-section-description">(121)</div>
-                    </div>
-                    <a href="{{route('product', ['id' => 1])}}" class="card-section-add" >
-                      <img src="./dist/img/cart.svg" alt="">
-                      Add to Cart
-                    </a>
-                </div>
-              </div>
-              <div class="card">
-                  <a href="{{ route('product', ['id' => 2]) }}" class="card-section image" id="image-container-2"></a>
-                  <div class="card-section">
-                      <a href="{{ route('product', ['id' => 2]) }}" class="card-section-name" style="color: #000">
-                          <div id="text-container-2"></div>
-                          <div id="cost-container-2"></div>
-                      </a>
-                      <h3 class="card-section-description">
-                        <div id="desc-container-2"></div>                
-                      </h3>
-                      <div class="card-section-stars">
-                          <div class="star-box">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                          </div>
-                          <div class="amount card-section-description">(121)</div>
-                      </div>
-                      <a href="{{route('product', ['id' => 2])}}" class="card-section-add" >
-                        <img src="./dist/img/cart.svg" alt="">
-                        Add to Cart
-                      </a>
-                  </div>
-              </div>
-              <div class="card">
-                  <a href="{{ route('product', ['id' => 3]) }}" class="card-section image" id="image-container-3"></a>
-                  <div class="card-section">
-                      <a href="{{ route('product', ['id' => 3]) }}" class="card-section-name" style="color: #000">
-                          <div id="text-container-3"></div>
-                          <div id="cost-container-3"></div>
-                      </a>
-                      <h3 class="card-section-description">
-                        <div id="desc-container-3"></div>                
-                      </h3>
-                      <div class="card-section-stars">
-                          <div class="star-box">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                          </div>
-                          <div class="amount card-section-description">(121)</div>
-                      </div>
-                      <a href="{{route('product', ['id' => 3])}}" class="card-section-add" >
-                        <img src="./dist/img/cart.svg" alt="">
-                        Add to Cart
-                      </a>
-                  </div>
-              </div>
-              <div class="card">
-                  <a href="{{ route('product', ['id' => 4]) }}" class="card-section image" id="image-container-4"></a>
-                  <div class="card-section">
-                      <a href="{{ route('product', ['id' => 4]) }}" class="card-section-name" style="color: #000">
-                          <div id="text-container-4"></div>
-                          <div id="cost-container-4"></div>
-                      </a>
-                      <h3 class="card-section-description">
-                         <div id="desc-container-4"></div>                
-                      </h3>
-                      <div class="card-section-stars">
-                          <div class="star-box">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                              <img src="./dist/img/star.svg" alt="" class="star">
-                          </div>
-                          <div class="amount card-section-description">(121)</div>
-                      </div>
-                      <a href="{{route('product', ['id' => 4])}}" class="card-section-add" >
-                        <img src="./dist/img/cart.svg" alt="">
-                        Add to Cart
-                      </a>
-                  </div>
-              </div>
+                @foreach($products->whereNotIn('id', [5, 6]) as $product)
+                    <x-product-item :product="$product" />
+                @endforeach
             </div>
         </div>
     </div>
