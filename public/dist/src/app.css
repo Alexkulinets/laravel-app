@@ -16,7 +16,6 @@
   --nav-mobile-background-color: #ffffff;
   --nav-dropdown-background-color: #ffffff;
   --nav-dropdown-color: #212529;
-  --nav-dropdown-hover-color: #5E1EE5;
   --nav-button-hover-color: #905cff;
   --home-sec-bg: #F3F4F6;
   --dis-box-y: #FFE921;
@@ -517,7 +516,8 @@ main.pricing-section {
 }
 
 .product-image {
-  height: 500px;
+  height: 100%;
+  max-height: 500px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -655,7 +655,7 @@ main.pricing-section {
   right: -5px;
   bottom: -5px;
   border-radius: 7px 14px;
-  border: 1.5px solid var(--nav-dropdown-hover-color);
+  border: 1.5px solid var(--nav-hover-color);
 }
 
 .currency-config-options {
@@ -1254,7 +1254,9 @@ main.success {
   width: 20%;
   height: 100%;
   border-right: 3px solid var(--home-sec-bg);
+  border-left: 3px solid var(--home-sec-bg);
   box-sizing: border-box;
+  text-align: center;
 }
 
 .all-categories {
@@ -1380,6 +1382,81 @@ main.success {
 .product-icons img {
   width: 25px;
   height: 25px;
+}
+
+.price-filter {
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  border-top: 3px solid var(--home-sec-bg);
+  border-bottom: 3px solid var(--home-sec-bg);
+  background: #fefefe;
+}
+.price-filter div {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+.price-filter .price-range-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.price-filter .price-range-display > input {
+  padding: 5px 10px;
+  border: 1.5px solid var(--accent-color);
+  border-radius: 10px;
+  width: 80px;
+  font-size: 14px;
+  text-align: center;
+}
+.price-filter .range-slider {
+  width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+}
+.price-filter .range-slider .slider {
+  width: 100%;
+  max-width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  height: 8px;
+  background: var(--nav-hover-color);
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s;
+}
+.price-filter .range-slider .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  -webkit-transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.price-filter .range-slider .slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+  background: var(--nav-button-hover-color);
+}
+.price-filter .range-slider .slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.price-filter .range-slider .slider:hover {
+  background: var(--nav-button-hover-color);
 }
 
 .all-products-section-container {

@@ -19,7 +19,6 @@
   --nav-mobile-background-color: #ffffff
   --nav-dropdown-background-color: #ffffff
   --nav-dropdown-color: #212529
-  --nav-dropdown-hover-color: #5E1EE5
   --nav-button-hover-color: #905cff
   --home-sec-bg: #F3F4F6
   --dis-box-y: #FFE921
@@ -507,7 +506,8 @@ main.pricing-section
   align-self: start 
   
 .product-image
-  height: 500px
+  height: 100%
+  max-height: 500px
   object-fit: contain
 
 .product-section-name
@@ -623,7 +623,8 @@ main.pricing-section
     transform: scale(1.1)
 
   &.active 
-    border: 1.5px solid #fff  
+    border: 1.5px solid #fff 
+
     &::after
       content: ''
       position: absolute
@@ -632,7 +633,7 @@ main.pricing-section
       right: -5px
       bottom: -5px
       border-radius: 7px 14px
-      border: 1.5px solid var(--nav-dropdown-hover-color)  
+      border: 1.5px solid var(--nav-hover-color)  
 
 
 .currency-config-options
@@ -1223,7 +1224,9 @@ main.success
   width: 20%
   height: 100%
   border-right: 3px solid  var(--home-sec-bg)
+  border-left: 3px solid  var(--home-sec-bg)
   box-sizing: border-box
+  text-align: center
 
 .all-categories
   height: 75%
@@ -1337,9 +1340,83 @@ main.success
 
 
 
+
 .product-icons img
   width: 25px 
   height: 25px
+
+.price-filter
+  margin-top: 20px
+  width: 100%
+  height: auto
+  display: flex
+  flex-direction: column
+  gap: 20px
+  padding: 10px
+  border-top: 3px solid  var(--home-sec-bg)
+  border-bottom: 3px solid  var(--home-sec-bg)
+  background: #fefefe
+
+  div
+    font-size: 16px
+    font-weight: 500
+    color: #333
+
+  .price-range-display
+    display: flex
+    align-items: center
+    gap: 10px
+
+    > input
+      padding: 5px 10px
+      border: 1.5px solid var(--accent-color)
+      border-radius: 10px
+      width: 80px 
+      font-size: 14px
+      text-align: center
+
+  .range-slider
+    width: 100%
+    max-width: 300px 
+    margin: 10px 0
+
+    .slider
+      width: 100%
+      max-width: 100%
+      appearance: none
+      height: 8px
+      background: var(--nav-hover-color)
+      border-radius: 5px
+      outline: none
+      transition: background 0.3s
+
+      &::-webkit-slider-thumb
+        appearance: none
+        width: 15px
+        height: 15px
+        border-radius: 50%
+        background: var(--accent-color)
+        cursor: pointer
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
+        transition: transform 0.2s ease, background 0.2s ease
+
+      &::-webkit-slider-thumb:hover
+        transform: scale(1.3)
+        background: var(--nav-button-hover-color)
+
+
+      &::-moz-range-thumb
+        width: 15px
+        height: 15px
+        border-radius: 50%
+        background: var(--accent-color)
+        cursor: pointer
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)
+
+      &:hover
+        background:  var(--nav-button-hover-color)
+  
+
 
   
 .all-products-section-container

@@ -32,6 +32,8 @@ class ProductController extends Controller
         $id = $request->query('id');
         $product = DB::table('product')->where('id', $id)->first();
 
+        $products = DB::table('product')->get(); 
+
         // Перевіряємо, чи існує продукт з таким id
         if (!$product) {
             return redirect()->route('home')->with('error', 'Product not found.');
@@ -39,16 +41,12 @@ class ProductController extends Controller
 
         // Генерація breadcrumbs
         $breadcrumbs = [
-            ['name' => 'Головна сторінка', 'url' => route('home')],
+            ['name' => 'Головна сторінка', 'url' => route('home') . '#categories'],
             ['name' => $product->name, 'url' => null], // Останній елемент без URL
         ];
 
 
         // Передача даних у вигляд
-        return view('front.product', compact('product', 'breadcrumbs'));
+        return view('front.product', compact('product', 'breadcrumbs', 'products'));
     }
-
-
-    
-
 }

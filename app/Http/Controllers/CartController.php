@@ -18,6 +18,12 @@ class CartController extends Controller
 
         $cart = session()->get('cart', []); // отримуємо існуючий товар 
 
+        foreach ($cart as &$item) {
+            if (isset($item['original_price'])) {
+                $item['price'] = $item['original_price']; // Повертаємо ціну до оригінальної
+            }
+        }   
+
         if (isset($cart[$id])) { 
             $cart[$id]['quantity']++; // якщо товар вже є то додаємо ще один такий же
         } else {
@@ -50,6 +56,7 @@ class CartController extends Controller
 
     public function applyDiscount(Request $request)
     {
+        $request->session()->flash('discount_activated', 'Код активовано!');
         $cart = session()->get('cart', []); // знову отримуємо кошик 
 
         // перевірка на наявність товару в кошику 
@@ -66,6 +73,8 @@ class CartController extends Controller
         $discounts = [
             'GREATSALL20' => 0.15, // знижка 15%
             'BLACKFRIDAY24' => 0.50, // знижка 50%
+            'ALLPRODUCTS5' => 0.05, // знижка 5%
+            'SPHERE10' => 0.1, // знижка 20%
         ];
         $discount = $discounts[$discountCode]; // витягуємо знижки з коду
 

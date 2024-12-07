@@ -1,7 +1,9 @@
 @props(['product'])
 
 <div class="card">
-  <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section image" id="image-container-{{ $product->id }}"></a>
+  <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section image">
+    <img src="{{ $product->image }}" class="card-product-image" alt="Product Image"/>
+  </a>
   <div class="card-section">
       <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section-name" style="color: #000">
           <div> {{ $product->name }} </div>

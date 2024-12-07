@@ -37,16 +37,20 @@
         <p class="cart-cost">Total: 
             ${{ array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $cart)) }}
         </p>
-        @if($discountCode)
-            <p>Ваш код знижки: {{ $discountCode }}</p>
-            <form action="{{ route('apply.discount') }}" method="POST">
-                @csrf
-                <button type="submit" id="discountcode-button" onclick="activateDiscount()">Активувати знижку</button>
-            </form>
+        @if(session('discount_activated'))
+            <p>{{ session('discount_activated') }}</p>
+        @else
+            @if($discountCode)
+                <p>Ваш код знижки: {{ $discountCode }}</p>
+                <form action="{{ route('apply.discount') }}" method="POST">
+                    @csrf
+                    <button type="submit" id="discountcode-button" onclick="activateDiscount()">Активувати знижку</button>
+                </form>
+            @endif
         @endif
 
         <!-- Форма для оформлення замовлення -->
-        <form action="{{ route('order.store') }}" method="POST">
+        <form action="{{ route('order.store') }}" method="POST" id="order-form">
             @csrf
             <div class="form-group">
                 <label for="customer_name">Ваше ім'я</label>
@@ -58,14 +62,14 @@
             </div>
             <div class="form-group">
                 <label for="customer_phone">Ваш номер телефону</label>
-                <input type="text" name="customer_phone"  name="customer_phone" equired>
+                <input type="text" name="customer_phone" name="customer_phone" required>
             </div>
             @foreach($cart as $item)
                 <input type="hidden" name="product_name[]" value="{{ $item['name'] }}">
                 <input type="hidden" name="quantity[]" value="{{ $item['quantity'] }}">
                 <input type="hidden" name="price[]" value="{{ $item['price'] }}">
             @endforeach
-            <button type="submit">Замовити</button>
+            <button type="submit" id="submitBtn">Замовити</button>
         </form>
     </div>
     <div class="cart-total">

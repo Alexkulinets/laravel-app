@@ -1,12 +1,14 @@
 @props(['product'])
 
-<div class="all-products-products-section">
+<div class="all-products-products-section" data-price="{{ $product->price }}">
   <div class="card all-products">
-    <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section image all-products" id="image-container-{{ $product->id }}"></a>
+    <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section image all-products">
+      <img src="{{ $product->image }}" class="product-image" alt="Product Image"/>
+    </a>
     <div class="card-section all-products">
       <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section-name all-products" style="color: #000">
         <div>{{ $product->name }}</div>
-        <div>${{ $product->price }}</div>
+        <div class="product-price">${{ $product->price }}</div>
       </a>
       <h3 class="card-section-description all-products">
         {{ $product->description }}

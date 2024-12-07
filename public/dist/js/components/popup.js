@@ -70,7 +70,9 @@ function showDiscountCode() {
 function generateDiscountCode() {
   const code = [
     { code: "BLACKFRIDAY24"},
-    { code: "GREATSALL20"}
+    { code: "GREATSALL20"},
+    { code: "ALLPRODUCTS5"},
+    { code: "SPHERE10"}
   ];
   const randomIndex = Math.floor(Math.random() * code.length);
   return code[randomIndex].code;

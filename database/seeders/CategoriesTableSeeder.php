@@ -79,6 +79,30 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'title' => 'Google Pixel 5 64GB',
+                'parent_id' => 11,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Google Pixel 5 128GB',
+                'parent_id' => 11,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Google Pixel 5 256GB',
+                'parent_id' => 11,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Iphone 11 256Gb',
+                'parent_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
            
         ]); 
     }

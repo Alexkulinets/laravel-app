@@ -4,6 +4,7 @@ import './components/animations.js';
 import './components/burgerMenu.js';
 import './components/getProduct.js';
 import './components/categories.js';
+import './components/cartSubmit.js';
 import './components/productSections.js';
 
 

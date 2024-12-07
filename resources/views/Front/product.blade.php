@@ -1,6 +1,6 @@
 @extends('content.main')
 
-@section('title', 'Product')
+
 @section('content')
 <main class="main-container-product">
     <main class="product-section-footer">
@@ -148,5 +148,21 @@
     </div>    
 </main>
 
+<div class="card-container" id="card">
+    <div class="card-container-name">
+    Todays <span class="purple-span">Best Deals</span> for you!
+    </div>
+    <div class="card-nav-container">
+      <button class="scroll-btn left-btn">←</button>
+      <button class="scroll-btn right-btn">→</button>
+    </div>
+    <div class="card-container-section">
+        <div class="card-content">
+          @foreach($products as $product)
+                <x-product-item :product="$product" />
+            @endforeach
+        </div>
+    </div>
+</div>
 @endsection
 
