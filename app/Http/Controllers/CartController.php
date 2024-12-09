@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-
     public function addToCart(Request $request, $id)
     {
         $product = DB::table('product')->where('id', $id)->first(); // витягуємо з дб
@@ -100,7 +99,7 @@ class CartController extends Controller
         $cart = session()->get('cart', []); // отримуємо кошик з сесії
         $discountCode = session()->get('discount_code', null); // отримуємо промокод з сесії 
 
-        return view('front.cart', compact('cart', 'discountCode')); //перенаправдяємо на сторінку кошика (cart.blade.php)
+        return view('sections.cart', compact('cart', 'discountCode')); //перенаправдяємо на сторінку кошика (cart.blade.php)
     }
 
 

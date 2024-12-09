@@ -854,7 +854,7 @@ main.pricing-section {
 
 .card {
   width: 420px;
-  height: 650px;
+  height: auto;
 }
 
 .card-section {
@@ -1275,13 +1275,20 @@ main.success {
   transition: color 0.75s ease;
 }
 
-.all-products-section-container {
-  height: 700px;
-  width: -moz-max-content;
-  width: max-content;
+.categories.products-section {
+  height: auto;
+  min-height: 100vh;
+}
+
+.categories.products-section {
+  padding: 20px;
+  position: relative;
+  display: grid;
   display: flex;
-  gap: 30px;
-  margin-top: 20px;
+  flex-direction: column;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  box-sizing: border-box;
 }
 
 .card.all-products {
@@ -1336,6 +1343,10 @@ main.success {
   width: auto;
   text-align: end;
   margin-bottom: 10px;
+}
+
+.categories-container {
+  margin-top: 100px;
 }
 
 .categories-product-icon-container {
@@ -1459,19 +1470,14 @@ main.success {
   background: var(--nav-button-hover-color);
 }
 
-.all-products-section-container {
-  padding: 20px 0;
-  width: 75%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 .all-products-section-lines {
-  width: 100%;
-  height: 500px;
-  display: flex;
-  padding: 0 20px;
+  height: auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  gap: 200px 0;
+  padding-bottom: 150px;
 }
 
 .all-products-products-section {
@@ -1483,7 +1489,7 @@ main.success {
   width: 100%;
   height: 75px;
   border-bottom: 3px solid var(--home-sec-bg);
-  padding: 0 20px;
+  padding: 10px 20px;
 }
 
 .search-input.all-products {
@@ -1511,6 +1517,64 @@ main.success {
 }
 .active-category:hover {
   transform: scale(1.03);
+}
+
+.pagination-container {
+  width: 100%;
+  max-width: 880px;
+  height: 120px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.375rem;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  color: var(--nav-hover-color);
+  text-decoration: none;
+  border-radius: 0.375rem;
+}
+
+.page-link:hover {
+  color: var(--nav-hover-color);
+  background-color: #f8f9fa;
+  border-color: #ddd;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: var(--nav-hover-color);
+  border-color: var(--nav-hover-color);
+}
+
+.page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(202, 167, 235, 0.263);
+}
+
+.page-item.disabled, .small.text-muted {
+  display: none;
 }
 
 footer.footer {
@@ -2011,7 +2075,38 @@ footer.footer {
     width: 80%;
   }
   .categories-container {
+    margin-top: 80px;
     padding: 0;
+  }
+  .categories-section-container:first-child .categories-product-icon-container {
+    cursor: pointer;
+  }
+  .categories-section-container {
+    position: absolute;
+    top: 0;
+    left: -320px;
+    width: 320px;
+    height: 100vh;
+    background-color: var(--home-sec-bg);
+    transition: left 0.3s ease;
+  }
+  .categories-section-container:first-child.active .categories-container {
+    left: 0;
+  }
+  .categories.products-section {
+    padding: 5px 5px 5px 5px;
+  }
+  .all-products-search-section {
+    padding: 10px 0;
+  }
+  .all-products-section-lines {
+    height: auto;
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    gap: 200px 0;
+    padding-bottom: 150px;
   }
   .card.all-products {
     width: 160px;
@@ -2025,10 +2120,13 @@ footer.footer {
   }
   .card-section.image.all-products {
     width: 155px;
-    height: 180px;
+    height: 190px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
   }
   .card-section.image.all-products > img {
-    width: 135px;
+    height: 180px;
   }
   .card-section-name.all-products {
     font-size: 12px;
@@ -2052,6 +2150,10 @@ footer.footer {
   }
   .card-section-add.all-products > img {
     display: none;
+  }
+  .all-products-products-section {
+    width: 160px;
+    height: 180px;
   }
   footer.footer {
     width: 300px;
@@ -2968,6 +3070,19 @@ footer.footer {
   }
 }
 @media (min-width: 1024px) and (max-width: 1440px) {
+  .header .header-container {
+    width: 100%;
+    max-width: 1000px;
+    background: var(--surface-color);
+    border-radius: 50px;
+    padding: 0 20px;
+    height: 65px;
+    background: #fff;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
   main.home-section {
     height: 600px;
   }

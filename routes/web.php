@@ -9,8 +9,7 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/review', [HomeController::class, 'review'])->name('review');
-Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
-
+Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
 
 Route::get('/getImage', [ProductController::class, 'getImage']);
 Route::get('/product', [ProductController::class, 'show'])->name('product');

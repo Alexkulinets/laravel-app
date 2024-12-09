@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const priceValue = document.getElementById("priceValue");  // Виведення ціни, що вибрана слайдером
     const minPriceInput = document.getElementById("minPriceInput");  // Поле вводу мінімальної ціни
     const maxPriceInput = document.getElementById("maxPriceInput");  // Поле вводу максимальної ціни
-   
+    
+
+    
 
     // Ініціалізація змінних для вибору категорії та цін
     let selectedCategory = '';  // Категорія, що вибрана
@@ -88,5 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
         syncValues();  // Оновлюємо значення
         filterProducts();  // Застосовуємо фільтрацію
     })
+    
 });
 

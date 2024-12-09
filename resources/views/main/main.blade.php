@@ -22,7 +22,7 @@
         <div class="nav-logo-container">
           <div class="nav-filter-container">
             <a href="{{ route('home') }}" class="logo">
-              <img class="logo-image" src="Sphere_litle.svg" alt="">
+              <img class="logo-image" src="{{ asset('./dist/main-images/Sphere_litle.svg') }}" alt="">
             </a>
           </div>
           <a class="cart-route-position" href="{{ route('cart') }}">
@@ -35,7 +35,7 @@
               </div>
               <ul>
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('pricing') }}">Pricing</a></li>
+                <li><a href="{{ route('categories') }}">Categories</a></li>
                 <li class="dropdown"><a href="{{ route('home') }}#events"><span>Events</span><i class="bi bi-chevron-down toggle-dropdown"></i></a></li>
                 <li><a href="{{ route('home') }}#contact">Contact</a></li>
               </ul>
@@ -55,7 +55,7 @@
         <div class="footer-section first">
           <a href="{{route('home')}}" class="logo">
             <img class="elips" src="./dist/img/Elips.svg" alt="">
-            <img src="Sphere_big.svg" alt="">
+            <img src="{{ asset('./dist/main-images/Sphere_big.svg') }}" alt="">
           </a> 
           <h3 class="first-section text">
             Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.

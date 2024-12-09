@@ -47,6 +47,6 @@ class ProductController extends Controller
 
 
         // Передача даних у вигляд
-        return view('front.product', compact('product', 'breadcrumbs', 'products'));
+        return view('sections.product', compact('product', 'breadcrumbs', 'products'));
     }
 }

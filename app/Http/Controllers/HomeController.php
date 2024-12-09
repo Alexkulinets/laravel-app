@@ -7,26 +7,43 @@ use App\Models\Category;
 
 class HomeController extends Controller
 {
-    public function pricing()
+    public function categories(Request $request)
     {
-        return view('front.pricing'); 
-    }
+        // Отримуємо значення пошукового запиту
+        $search = $request->input('search');
+        
+        // Фільтруємо продукти за умовою пошуку, якщо є запит
+        $products = DB::table('product')
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->paginate(6);
+    
+        // Отримуємо категорії
+        $categories = Category::tree()->get()->toTree();
+    
+        return view('sections.categories', [
+            'products' => $products,
+            'categories' => $categories,
+            'search' => $search,  // передаємо значення пошукового запиту у вигляд
+        ]);
+    }    
     public function review()
     {
-        return view('front.review'); 
+        return view('sections.review'); 
     }
     public function cart()
     {
-        return view('front.cart');  
+        return view('sections.cart');  
     }
     public function home()
     {
-        $products = DB::table('product')->get(); 
+        $products = DB::table('product')->get();
         $categories = Category::tree()->get()->toTree();
         
-        return view('front.home', [
-            'products' => $products,
-            'categories' => $categories
+        return view('sections.home', [
+            'categories' => $categories,
+            'products' => $products
         ]);
     }
     
