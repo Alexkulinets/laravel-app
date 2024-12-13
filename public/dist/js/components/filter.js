@@ -1,95 +1,84 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Отримуємо елементи з DOM
-    const searchInput = document.getElementById('search-input');  // Поле для пошуку
-    const categoryItems = document.querySelectorAll('.categories-product-icon-container');  // Категорії продуктів
-    const productCards = document.querySelectorAll('.all-products-products-section');  // Картки продуктів
-    const priceRange = document.getElementById("priceRange");  // Слайдер для цін
-    const priceValue = document.getElementById("priceValue");  // Виведення ціни, що вибрана слайдером
-    const minPriceInput = document.getElementById("minPriceInput");  // Поле вводу мінімальної ціни
-    const maxPriceInput = document.getElementById("maxPriceInput");  // Поле вводу максимальної ціни
-    
+    const searchInput = document.getElementById('search-input');
+    const productCards = document.querySelectorAll('.all-products-products-section');
+    const priceRange = document.getElementById("priceRange");
+    const priceValue = document.getElementById("priceValue");
+    const minPriceInput = document.getElementById("minPriceInput");
+    const maxPriceInput = document.getElementById("maxPriceInput");
+    const categoriesContainer = document.querySelector('.categories-section-container');
+    const toggleButton = document.getElementById('toggleButton');
+    const closeButton = document.querySelector('.close');
+    const urlParams = new URLSearchParams(window.location.search);
 
-    
+    let minPrice = parseInt(urlParams.get('min_price')) || 0;
+    let maxPrice = parseInt(urlParams.get('max_price')) || 1000;
 
-    // Ініціалізація змінних для вибору категорії та цін
-    let selectedCategory = '';  // Категорія, що вибрана
-    let minPrice = parseInt(minPriceInput.value) || 0;  // Мінімальна ціна, за замовчуванням 0
-    let maxPrice = parseInt(maxPriceInput.value) || 2000;  // Максимальна ціна, за замовчуванням 2000
+    minPriceInput.value = minPrice;
+    maxPriceInput.value = maxPrice;
 
-    // Функція для синхронізації значень
-    function syncValues() {
-        // Перевіряємо та коригуємо мінімальну та максимальну ціни
-        if (minPrice < 0) minPrice = 0;  // Якщо мінімальна ціна менше 0, ставимо 0
-        if (maxPrice > 2000) maxPrice = 2000;  // Якщо максимальна ціна більше 2000, ставимо 2000
+    const updateSliderAndFields = () => {
+        const prices = Array.from(productCards).map(card => parseFloat(card.dataset.price) || 0);
+        const minProductPrice = Math.min(...prices);
+        const maxProductPrice = Math.max(...prices);
 
-        // Оновлюємо значення слайдера та полів вводу
+        priceRange.min = minProductPrice;
+        priceRange.max = maxProductPrice;
+
+        // Задаємо початкові значення
         priceRange.value = maxPrice;
         priceValue.textContent = maxPrice;
-
         minPriceInput.value = minPrice;
         maxPriceInput.value = maxPrice;
-    }
+    };
 
-    // Функція для фільтрації продуктів
-    function filterProducts() {
-        const searchTerm = searchInput.value.toLowerCase();  // Отримуємо значення пошуку, приводимо до нижнього регістру
+    const updateUrl = () => {
+        const currentUrl = new URL(window.location);
+        currentUrl.searchParams.set("min_price", minPrice);
+        currentUrl.searchParams.set("max_price", maxPrice);
+        window.history.replaceState({}, "", currentUrl);
+    };
 
-        productCards.forEach(card => {
-            const productName = card.querySelector('.card-section-name').textContent.toLowerCase();  // Назва продукту
-            const productPrice = parseFloat(card.dataset.price);  // Ціна продукту з data-атрибута
+    const syncValues = () => {
+        maxPriceInput.value = maxPrice; // Оновлення текстового поля максимальної ціни
+        priceValue.textContent = maxPrice;
+        updateUrl();
+    };
 
-            // Перевіряємо, чи підходить продукт за категорією, пошуком та ціною
-            const matchesCategory = selectedCategory === '' || selectedCategory === 'all products' || productName.includes(selectedCategory);
-            const matchesSearch = searchTerm === '' || productName.includes(searchTerm);
-            const matchesPrice = productPrice >= minPrice && productPrice <= maxPrice;
+    toggleButton.addEventListener('click', () => categoriesContainer.classList.add('active'));
+    closeButton.addEventListener('click', () => categoriesContainer.classList.remove('active'));
 
-            // Відображаємо або приховуємо продукт в залежності від фільтрів
-            if (matchesCategory && matchesSearch && matchesPrice) {
-                card.style.display = '';  // Якщо продукт відповідає умовам, показуємо його
+    priceRange.addEventListener("input", () => {
+        maxPrice = parseInt(priceRange.value) || maxPrice;
+        syncValues();
+    });
+
+    [minPriceInput, maxPriceInput].forEach(input => {
+        input.addEventListener("input", () => {
+            const value = input.value === "" ? "" : parseInt(input.value);
+            if (input === minPriceInput) {
+                minPrice = value || 0; // Якщо поле пусте, ставимо 0
             } else {
-                card.style.display = 'none';  // Інакше приховуємо продукт
+                maxPrice = value || priceRange.max; // Якщо поле пусте, ставимо максимальне значення
+                priceRange.value = maxPrice || priceRange.max; // Оновлення повзунка
             }
+            updateUrl();
         });
-    }
 
-    // Подія для пошуку (викликається при кожному введенні в поле пошуку)
-    searchInput.addEventListener('input', filterProducts);
-
-    // Фільтрація за категоріями
-    categoryItems.forEach(category => {
-        category.addEventListener('click', function () {
-            // Встановлюємо вибрану категорію
-            selectedCategory = this.querySelector('.categories-box-text').textContent.toLowerCase();
-
-            // Відмічаємо вибрану категорію
-            categoryItems.forEach(item => item.classList.remove('active-category'));
-            this.classList.add('active-category');
-
-            // Перезастосовуємо фільтри після вибору категорії
-            filterProducts();
+        input.addEventListener("blur", () => {
+            if (input === minPriceInput && minPrice === "") {
+                minPrice = 0;
+                input.value = minPrice;
+            }
+            if (input === maxPriceInput && maxPrice === "") {
+                maxPrice = priceRange.max;
+                input.value = maxPrice;
+            }
+            syncValues();
         });
     });
 
-    // Оновлення значень через слайдер (при зміні слайдера)
-    priceRange.addEventListener("input", function () {
-        maxPrice = parseInt(priceRange.value) || 2000;  // Якщо значення слайдера некоректне, ставимо 2000
-        syncValues();  // Оновлюємо значення
-        filterProducts();  // Застосовуємо фільтрацію
-    });
+    searchInput.value = localStorage.getItem('searchTerm') || '';
+    searchInput.addEventListener('input', () => localStorage.setItem('searchTerm', searchInput.value));
 
-    // Оновлення значень через інпут (мінімальна ціна)
-    minPriceInput.addEventListener("input", function () {
-        minPrice = parseInt(minPriceInput.value) || 0;  // Якщо мінімальна ціна некоректна, ставимо 0
-        syncValues();  // Оновлюємо значення
-        filterProducts();  // Застосовуємо фільтрацію
-    });
-
-    // Оновлення значень через інпут (максимальна ціна)
-    maxPriceInput.addEventListener("input", function () {
-        maxPrice = parseInt(maxPriceInput.value) || 2000;  // Якщо максимальна ціна некоректна, ставимо 2000
-        syncValues();  // Оновлюємо значення
-        filterProducts();  // Застосовуємо фільтрацію
-    })
-    
+    updateSliderAndFields();
 });
-

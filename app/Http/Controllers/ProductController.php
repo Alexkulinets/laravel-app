@@ -41,7 +41,7 @@ class ProductController extends Controller
 
         // Генерація breadcrumbs
         $breadcrumbs = [
-            ['name' => 'Головна сторінка', 'url' => route('home') . '#categories'],
+            ['name' => 'Головна сторінка', 'url' => route('home') . '/categories'],
             ['name' => $product->name, 'url' => null], // Останній елемент без URL
         ];
 

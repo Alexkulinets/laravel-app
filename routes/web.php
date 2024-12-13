@@ -1,6 +1,7 @@
 <?php
-use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController; 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
@@ -9,7 +10,8 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/review', [HomeController::class, 'review'])->name('review');
-Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
+Route::get('/categories', [CategoriesController::class, 'categories'])->name('categories');
+Route::get('/filter-products', [CategoriesController::class, 'categories'])->name('filter.products');
 
 Route::get('/getImage', [ProductController::class, 'getImage']);
 Route::get('/product', [ProductController::class, 'show'])->name('product');

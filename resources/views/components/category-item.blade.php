@@ -5,7 +5,7 @@
         @php
             $imagePath = 'dist/categories-images/' . strtolower(str_replace(' ', '-', $category->title)) . '.svg';
         @endphp
-        <img src="{{ file_exists(public_path($imagePath)) ? asset($imagePath) : asset('dist/categories-images/default-icon.svg') }}" alt="{{ $category->title }}">
+        <img src="{{ file_exists(public_path($imagePath)) ? asset($imagePath) : asset('dist/categories-images/default-image-icon.svg') }}" alt="{{ $category->title }}">
     </div>
     <h3 class="categories-box-text" style="font-size: 14px; font-weight: 400">{{ $category->title }}</h3>
 </div>

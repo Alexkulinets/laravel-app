@@ -1214,7 +1214,6 @@ main.success
 .categories-container
   width: 100%
   max-width: 1200px
-  padding: 0 20px
   height: auto 
   display: flex
   box-sizing: border-box
@@ -1226,7 +1225,6 @@ main.success
   border-right: 3px solid  var(--home-sec-bg)
   border-left: 3px solid  var(--home-sec-bg)
   box-sizing: border-box
-  text-align: center
 
 .all-categories
   height: 75%
@@ -1234,6 +1232,9 @@ main.success
   flex-direction: column
   gap: 10px
   
+.all-categories > form
+  width: 100%
+
 .categories-product-icon-container
   display: flex
   align-items: center
@@ -1424,36 +1425,82 @@ main.success
         background:  var(--nav-button-hover-color)
   
 
+.all-products-section-container
+  width: 80%
+
+.all-products-center-container
+  width: 100%
+  display: flex
+  justify-content: center
+
 .all-products-section-lines
+  width: 100%
   height: auto
   padding: 20px
   display: grid
   grid-template-columns: repeat(3, 1fr)
   gap: 1rem
-  gap: 200px 0
+  gap: 200px 20px
   padding-bottom: 150px 
 
 .all-products-products-section
-  width: 300px
+  width: 18.5vw
   height: 300px
 
-.all-products-search-section
+.all-products-search-section 
   width: 100%
-  height: 75px
+
+.search-container
+  display: flex
+
+.search-container > button, .price-filter > button
+  background: var(--nav-hover-color)
+
+  &:hover
+    background: var(--nav-button-hover-color)
+
+.search-nav-bar
+  width: 100%
+  height: 100px
   border-bottom: 3px solid  var(--home-sec-bg)
-  padding: 10px 20px 
+  padding: 0 10px 
+  display: flex
+  align-items: center
+  gap: 20px
+
+div.close
+  display: none
+
+.categories-button-container
+  width: 30px
+  height: 30px
+  display: none
+
+  .categories-button
+    height: 100%
+
+.no-products
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  font-size: 5vw
+  color: var(--accent-color)
+  font-weight: 600
 
 .search-input.all-products
+  width: 100%
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1)
-  border: 3px solid #fcfcfc
+  border: none
 
 .search-input.all-products:focus
-  border: 3px solid #fcfcfc
-  transform: scale(1.05)
+  border: none
+  transform: scale(1.03)
 
 .search-input.all-products:hover
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.552)
-  border: 3px solid #d1d1d1
+  border: none
 
 .active-category 
   border: 2px solid var(--nav-hover-color)
@@ -1470,17 +1517,23 @@ main.success
 //-------products-----paginations-----------//
   
 .pagination-container
+  margin-top: 20px
   width: 100%
   max-width: 880px
   height: 120px
   display: flex
   justify-content: flex-end
+  grid-column: 3
 
 .pagination
   display: flex
   padding-left: 0
   list-style: none
   border-radius: .375rem
+
+ul.pagination
+  display: flex
+  justify-content: flex-end
 
 .page-item
   margin: 0 5px
@@ -1700,10 +1753,6 @@ footer.footer
     cursor: pointer
     font-size: 48px
     color: #333
-
-  //.nav-logo-container
-
-  //home-adaptive-section
 
   main.home-section
     width: 100%
@@ -2043,15 +2092,15 @@ footer.footer
     padding: 0 5px
   //-----------categories-section-------------------//  
   .categories-box-text, .categories-name
-    display: none
+    text-align: center
   
   .all-categories
-    align-items: center
+    width: 100%
+    gap: 0
+    padding: 0
 
   .categories-product-icon-container
     padding: 0
-    justify-content: center
-    width: 80%
 
   .categories-container
     margin-top: 80px
@@ -2062,34 +2111,53 @@ footer.footer
     cursor: pointer 
 
   .categories-section-container
-    position: absolute
+    position: fixed
     top: 0
-    left: -320px 
-    width: 320px
-    height: 100vh
-    background-color: var(--home-sec-bg)
+    left: -100% 
+    width: 100%
+    height: auto
+    min-height: 5000px
+    background-color: #fff
     transition: left 0.3s ease
+    z-index: 999
+    gap: 100px
 
-  .categories-section-container:first-child.active .categories-container
-    left: 0 
+  .categories-section-container.active
+    left: 0
 
+  .categories-name
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+  .search-nav-bar
+    padding: 0px 20px
 
   .categories.products-section
     padding: 5px 5px 5px 5px
 
-  .all-products-search-section
-    padding: 10px 0
+  .all-products-section-container
+    width: 100%
 
   .all-products-section-lines 
+    width: calc(100% - 0.1rem)
     height: auto
-    padding: 20px 0 
+    padding: 20px 0
     display: grid
     grid-template-columns: repeat(2, 1fr)
-    gap: 1rem
     gap: 200px 0
     padding-bottom: 150px
 
 
+  div.close
+    display: block
+
+  .categories-button-container
+    display: block
+
+
+    
 
   .card.all-products
     width: 160px
@@ -2144,18 +2212,16 @@ footer.footer
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+  //-------products-----paginations-----------//
+    
+  .pagination-container
+    margin-top: 20px
+    width: 100%
+    max-width: 880px
+    height: 120px
+    display: flex
+    justify-content: flex-end
+    grid-column: 2
   
   //footer-section-adaptive
   
@@ -2621,54 +2687,128 @@ footer.footer
     height: 20px
   //-----------categories-section-------------------//  
   .categories-box-text, .categories-name
-    display: none
+    text-align: center
   
   .all-categories
-    align-items: center
+    width: 100%
+    gap: 0
+    padding: 0
 
   .categories-product-icon-container
     padding: 0
-    justify-content: center
-    width: 80%
 
   .categories-container
+    margin-top: 80px
     padding: 0
 
+
+  .categories-section-container:first-child .categories-product-icon-container
+    cursor: pointer 
+
+  .categories-section-container
+    position: fixed
+    top: 0
+    left: -100% 
+    width: 100%
+    height: auto
+    min-height: 5000px
+    background-color: #fff
+    transition: left 0.3s ease
+    z-index: 999
+    gap: 100px
+
+  .categories-section-container.active
+    left: 0
+
+  .categories-name
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+  .search-nav-bar
+    padding: 0px 20px
+
+  .categories.products-section
+    padding: 5px 5px 5px 5px
+
+  .all-products-section-container
+    width: 100%
+
+  .all-products-center-container
+    padding: 0 10px
+    justify-content: center
+    
+  .all-products-section-lines 
+    width: 100%
+    height: auto
+    padding: 20px 0
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 0
+    padding-bottom: 0
+
+  .all-products-products-section
+    width: 50vw
+    height: auto
+
+  div.close
+    display: block
+
+  .categories-button-container
+    display: block
+  
+  //-------products-----paginations-----------//
+    
+  .pagination-container
+    margin-top: 20px
+    width: 100%
+    max-width: 880px
+    height: 120px
+    display: flex
+    justify-content: flex-end
+    grid-column: 2
+
   .card.all-products
-    width: 160px
+    width: 50vw
+    height: auto
 
   .card-section.all-products
-    gap: 3px
-
-  .card-section.all-products
-    width: 150px
-    height: 170px
+    width: 45vw 
+    height: 40vw
+    gap: 1.5vw
 
   .card-section.image.all-products
-    width: 155px
-    height: 180px
+    width: 45vw
+    height: 50vw
 
   .card-section.image.all-products > img
-    width: 135px
+    width: auto
+    height: 47.5vw
 
-  .card-section-name.all-products
-    font-size: 12px
 
   .card-section.image.all-products > .card-product-image
     width: 140px
     height: 160px
 
+  .card-section-name.all-products
+    font-size: 3.25vw
+
+  .card-section-description.all-products
+    font-size: 2.75vw
+
   .card-section-stars > .amount.card-section-description
-    font-size: 12px
+    font-size: 2.5vw
+
 
 
   .star-box > img
-    width: 10px
-    height: 10px
+    width: 2.5vw
+    height: 2.5vw
 
   .card-section-add.all-products
-    height: 40px
-    width: 100px
+    height: 7vw
+    width: 30vw
     font-size: 12px
     padding: 0
 
@@ -2678,7 +2818,7 @@ footer.footer
   //footer-section-adaptive
   
   footer.footer
-    width: 400px
+    width: 100%
     display: flex
     justify-content: center
     padding-bottom: 50px 
@@ -2702,10 +2842,16 @@ footer.footer
     flex-wrap: wrap
     text-align: center
 
+
   .footer-section.first
     flex-direction: column
     align-items: center
     text-align: center
+
+  .popup .popup-content
+    width: 100%
+    min-width: 300px
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.284)
 
 @media (min-width: 768px) and (max-width: 1023.98px)
   .header 
@@ -3001,6 +3147,9 @@ footer.footer
     transform: 0.75s 
     border: none
 
+  .card.all-products
+    height: 500px
+
   .card-section.all-products 
     width: 240px
 
@@ -3112,8 +3261,80 @@ footer.footer
 
 
   //-----------categories-section-------------------//  
+  .categories-box-text, .categories-name
+    text-align: center
+  
+  .all-categories
+    width: 100%
+    gap: 0
+    padding: 0
+
+  .categories-product-icon-container
+    padding: 0
+
+  .categories-container
+    margin-top: 80px
+    padding: 0
+
+
+  .categories-section-container:first-child .categories-product-icon-container
+    cursor: pointer 
+
+  .categories-section-container
+    position: fixed
+    top: 0
+    left: -100% 
+    width: 100%
+    height: auto
+    min-height: 5000px
+    background-color: #fff
+    transition: left 0.3s ease
+    z-index: 999
+    gap: 100px
+
+  .categories-section-container.active
+    left: 0
+    width: 425px
+    padding-right: 10px 
+
   .categories-name
-    font-size: 24px
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+  .categories-button-container
+    display: block
+
+  .search-nav-bar
+    padding: 0px 20px
+
+  .categories.products-section
+    padding: 5px 5px 5px 5px
+
+  .all-products-section-container
+    width: 100%
+
+  .all-products-center-container
+    padding: 0 10px
+    justify-content: center
+    
+  .all-products-section-lines 
+    width: 100%
+    height: auto
+    padding: 20px 0
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 0
+    padding-bottom: 0
+
+  .all-products-products-section
+    width: 30vw
+    height: auto
+
+  div.close
+    display: block
+
   
   //footer-section-adaptive
   
@@ -3210,6 +3431,9 @@ footer.footer
     width: 1000px
   
 
+  .categories-section-container
+    width: auto
+
     
   .footer-container
     width: 1000px
@@ -3217,8 +3441,6 @@ footer.footer
   .footer-section.first
     width: 350px
 
-  h3.first-section.text
-    width: 345px
 
   .footer-section.second
     width: 600px

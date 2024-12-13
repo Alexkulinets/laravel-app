@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('dist/src/app.css') }}"/>
-    <link rel="icon" href="{{ asset('Sphere_litle.svg') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('./dist/img/Elips.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
@@ -35,7 +35,7 @@
               </div>
               <ul>
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('categories') }}">Categories</a></li>
+                <li><a href="{{ route('categories') }}">Catalog</a></li>
                 <li class="dropdown"><a href="{{ route('home') }}#events"><span>Events</span><i class="bi bi-chevron-down toggle-dropdown"></i></a></li>
                 <li><a href="{{ route('home') }}#contact">Contact</a></li>
               </ul>
@@ -82,7 +82,6 @@
         </div>
       </div>
     </footer>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module" src="{{ asset('dist/js/app.js') }}" ></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
