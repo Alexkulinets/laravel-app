@@ -26,84 +26,23 @@ class CategoriesTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Iphone 13',
-                'parent_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'Iphone 12',
-                'parent_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'Iphone 11',
-                'parent_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
                 'title' => 'Google',
                 'parent_id' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Google Pixel 9',
-                'parent_id' => 6,
+                'title' => 'Iphone 13',
+                'parent_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'Google Pixel 8',
-                'parent_id' => 6,
+                'title' => 'Iphone 13 pro',
+                'parent_id' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'title' => 'Google Pixel 7',
-                'parent_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'Google Pixel 6',
-                'parent_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'Google Pixel 5',
-                'parent_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'Google Pixel 5 64GB',
-                'parent_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'Google Pixel 5 128GB',
-                'parent_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'Google Pixel 5 256GB',
-                'parent_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'Iphone 11 256Gb',
-                'parent_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-           
         ]); 
     }
 }

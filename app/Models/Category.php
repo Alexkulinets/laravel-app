@@ -10,4 +10,11 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Category extends Model
 {
     use HasRecursiveRelationships;
+
+    public function products()
+    {
+        return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id', 'parent_id');
+    }
+    
+
 }

@@ -12,6 +12,8 @@ class ProductTableSeeder extends Seeder
 
     public function run(): void
     {
+
+
         DB::table('product')->truncate(); 
 
         DB::table('product')->insert([
@@ -1021,5 +1023,6 @@ class ProductTableSeeder extends Seeder
                 'updated_at' => now(),
             ], 
         ]);
+
     }
 }

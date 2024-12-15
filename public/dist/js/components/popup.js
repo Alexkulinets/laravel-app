@@ -80,22 +80,21 @@ function generateDiscountCode() {
 
 
 
+
 function saveDiscountCodeToSession(code) {
+  const CSRF = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  
   fetch('/save-discount-code', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // CSRF токен
+      'X-CSRF-TOKEN': CSRF
     },
     body: JSON.stringify({ discount_code: code })
   })
   .then(response => response.json())
-  .then(data => {
-    console.log('Discount code saved to session: ', data);
-  })
-  .catch(error => {
-    console.error('Error saving discount code:', error);
-  });
+  .then(data => {console.log('Discount code saved to session: ', data);})
+  .catch(error => {console.error('Error saving discount code:', error);});
 }
 }); 
   

@@ -10,8 +10,11 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/review', [HomeController::class, 'review'])->name('review');
+
+
 Route::get('/categories', [CategoriesController::class, 'categories'])->name('categories');
 Route::get('/filter-products', [CategoriesController::class, 'categories'])->name('filter.products');
+
 
 Route::get('/getImage', [ProductController::class, 'getImage']);
 Route::get('/product', [ProductController::class, 'show'])->name('product');
@@ -27,5 +30,3 @@ Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('clearCart
 Route::post('/cart/remove', [CartController::class, 'removeItem'])->name('cart.remove');
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::post('/apply-discount', [CartController::class, 'applyDiscount'])->name('apply.discount');
-
-
