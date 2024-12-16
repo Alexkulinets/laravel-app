@@ -16,7 +16,7 @@ Route::get('/categories', [CategoriesController::class, 'categories'])->name('ca
 Route::get('/filter-products', [CategoriesController::class, 'categories'])->name('filter.products');
 
 
-Route::get('/getImage', [ProductController::class, 'getImage']);
+Route::get('/getImage', [ProductController::class, 'getProductInfo']);
 Route::get('/product', [ProductController::class, 'show'])->name('product');
 
 

@@ -18,7 +18,7 @@ class CategoriesController extends Controller
         $query = Product::query();
 
         // Якщо є категорія, то фільтруємо за категорією
-        if ($categoryId != 1) {
+        if ($categoryId && $categoryId != 1) {
             $query->whereHas('categories', function ($q) use ($categoryId) {
                 $q->where('category_id', $categoryId);
             });

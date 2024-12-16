@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
 
     let minPrice = parseInt(urlParams.get('min_price')) || 0;
-    let maxPrice = parseInt(urlParams.get('max_price')) || 1000;
+    let maxPrice = parseInt(urlParams.get('max_price')) || 2000;
 
     minPriceInput.value = minPrice;
     maxPriceInput.value = maxPrice;

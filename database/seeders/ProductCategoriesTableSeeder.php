@@ -12,97 +12,54 @@ class ProductCategoriesTableSeeder extends Seeder
     {
         DB::table('product_categories')->truncate(); 
 
-        DB::table('product_categories')->insert([
-            [
+        $data = [];
+
+        // Для категорії 2
+        for ($i = 1; $i <= 13; $i++) {
+            $data[] = [
                 'category_id' => 2,
-                'product_id' => 1,
+                'product_id' => $i,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 3,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 4,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 5,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 6,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 7,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 8,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 9,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 10,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 11,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 12,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'category_id' => 2,
-                'product_id' => 13,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
+            ];
+        }
+        
+        // Для категорії 3
+        for ($i = 1; $i <= 12; $i++) {
+            $data[] = [
                 'category_id' => 3,
-                'product_id' => 13,
+                'product_id' => $i,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
+            ];
+        }
+        for ($i = 13; $i <= 13; $i++) {
+            $data[] = [
                 'category_id' => 4,
-                'product_id' => 4,
+                'product_id' => $i,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-        ]);
+            ];
+        }
+        for ($i = 14; $i <= 15; $i++) { 
+            $data[] = [
+                'category_id' => 5,
+                'product_id' => $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+        for ($i = 14; $i <= 15; $i++) { 
+            $data[] = [
+                'category_id' => 7,
+                'product_id' => $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+        
+        
+        // Вставка даних в таблицю
+        DB::table('product_categories')->insert($data);
     }
 }

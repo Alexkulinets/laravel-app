@@ -10,7 +10,7 @@
     <h3 class="categories-box-text" style="font-size: 14px; font-weight: 400">
         <label>
             {{ $category->title }}
-            <input type="radio" class="parent" name="category_id" value="{{ $category->id }}">
+            <input type="radio" class="parent" name="category_id" value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'checked' : '' }}>
         </label>
     </h3>
 </div>

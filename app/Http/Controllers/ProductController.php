@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function getImage(Request $request)
+    public function getProductInfo(Request $request)
     {
         $id = $request->input('id');
         $product = DB::table('product')->where('id', $id)->first();
