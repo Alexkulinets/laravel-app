@@ -1171,7 +1171,7 @@ class ProductTableSeeder extends Seeder
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/334397470.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ], 
+            ],  
         ]);
 
     }

@@ -12,13 +12,16 @@
                         <x-category-item :category="$category" />
                     @endforeach
                     <div class="price-filter">
-                        <div for="priceRange">Ціна: <span id="priceValue">2000</span> $</div>
+                        <label for="priceRange">
+                            Ціна: <span id="priceValue" data-max-price="{{ $maxPrice }}">{{ $maxPrice }}</span> $
+                        </label>
                         <div class="price-range-display">
-                            <input type="number" id="minPriceInput" name="min_price" min="0" step="1" />—
-                            <input type="number" id="maxPriceInput" name="max_price" min="0" step="1" />
+                            <input type="number" id="minPriceInput" name="min_price" min="0" step="1.00" value="0" />
+                            —
+                            <input type="number" id="maxPriceInput" name="max_price" min="0" step="1.00" value="{{ $maxPrice }}" />
                         </div>
                         <div class="range-slider">
-                            <input type="range" id="priceRange" min="0" step="1" class="slider" />
+                            <input type="range" id="priceRange" min="0" max="{{ $maxPrice }}" step="1.00" class="slider" value="{{ $maxPrice }}" />
                         </div>
                         <button type="submit" class="search-button">Застосувати</button>
                     </div>
@@ -34,7 +37,7 @@
                         <input class="search-input all-products" type="text" placeholder="Я шукаю..." id="search-input" name="search" value="{{ request('search') }}"/>
                         <button type="submit" class="search-button">Пошук</button>
                     </div>
-                    </form>
+                </form>
                 </div>
             </div>
             <div class="categories products-section" id="categories">

@@ -33,6 +33,7 @@ class ProductCategoriesTableSeeder extends Seeder
                 'updated_at' => now(),
             ];
         }
+                // Для категорії 4
         for ($i = 13; $i <= 13; $i++) {
             $data[] = [
                 'category_id' => 4,
@@ -41,6 +42,7 @@ class ProductCategoriesTableSeeder extends Seeder
                 'updated_at' => now(),
             ];
         }
+                // Для категорії 5
         for ($i = 14; $i <= 15; $i++) { 
             $data[] = [
                 'category_id' => 5,
@@ -49,6 +51,7 @@ class ProductCategoriesTableSeeder extends Seeder
                 'updated_at' => now(),
             ];
         }
+                // Для категорії 7
         for ($i = 14; $i <= 15; $i++) { 
             $data[] = [
                 'category_id' => 7,
