@@ -508,6 +508,8 @@ main.pricing-section
 .product-image
   height: 100%
   max-height: 500px
+  width: 100%
+  max-width: 90%
   object-fit: contain
 
 .product-section-name
@@ -812,7 +814,8 @@ main.pricing-section
   scroll-behavior: smooth
 
 .card-product-image
-  height: 400px
+  height: auto
+  max-height: 400px
   width: 325px
   
 
@@ -1075,6 +1078,7 @@ main.pricing-section
   height: auto 
   display: flex
   border-bottom: 150px solid transparent
+  padding: 20px 0
 
   
 .cart-section
@@ -1086,10 +1090,13 @@ main.pricing-section
 
 
 .cart-item-image
-  height: 230px
-  width: 155px
+  height: auto
+  width: auto
+  max-height: 200px
+  max-width: 160px
   display: flex
   padding: 15px 0
+  align-items: center
 
 
 .cart-products-container
@@ -1270,7 +1277,7 @@ main.main-categories-container
   height: 420px
 
 .card-section.all-products > img
-  width: 220px
+  width: 87.5%
   height: 280px
 
 .card-section-description.all-products
@@ -1356,6 +1363,7 @@ main.main-categories-container
 .product-icons img
   width: 25px 
   height: 25px
+
 
 .price-filter
   margin-top: 20px
@@ -1471,8 +1479,7 @@ main.main-categories-container
   align-items: center
   gap: 20px
 
-.search-container
-  
+
 
 div.close
   display: none
@@ -1488,7 +1495,7 @@ div.close
 
 .categories-box-text 
   height: 100%
-  width: 80%
+  width: 100%
 
 .categories-name
   padding: 0 10px
@@ -1501,6 +1508,7 @@ div.close
 
 
 .categories-box-text > label > input 
+  width: 100%
   height: 100%
   width: auto
   appearance: none
@@ -1533,6 +1541,7 @@ div.close
   border: none
 
 .active-category 
+  width: 100%
   border: 2px solid var(--nav-hover-color)
   border-radius: 10px
   background-color: #f0f8ff
@@ -2052,8 +2061,9 @@ footer.footer
 
 
   .product-image
-    height: 400px
-    width: 300px
+    height: 220px
+    width: auto
+    max-width: 100%
     padding: 0 0 20px 0
     display: flex
     justify-content: center
@@ -2715,7 +2725,9 @@ footer.footer
   .remove-button-image
     width: 20px
     height: 20px
-  //-----------categories-section-------------------//  
+  //-----------categories-section-------------------// 
+
+
   .categories-box-text, .categories-name
     text-align: center
   
@@ -2747,8 +2759,12 @@ footer.footer
     z-index: 999
     gap: 100px
 
-  .categories-section-container.active
+  .categories-section-container.active 
     left: 0
+    height: 100vh 
+    overflow-y: auto
+  
+    
 
   .categories-name
     width: 100%

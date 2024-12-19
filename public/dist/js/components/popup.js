@@ -96,5 +96,7 @@ function saveDiscountCodeToSession(code) {
   .then(data => {console.log('Discount code saved to session: ', data);})
   .catch(error => {console.error('Error saving discount code:', error);});
 }
+
+
 }); 
   

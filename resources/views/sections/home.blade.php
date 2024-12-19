@@ -1,4 +1,5 @@
 @extends('main.main')
+
 @section('content')
 <main class="home-section">
     <div class="home-section-container">

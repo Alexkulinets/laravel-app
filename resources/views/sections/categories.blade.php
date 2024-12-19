@@ -8,23 +8,23 @@
             </div>
             <div class="all-categories">
                 <form method="GET" action="{{ route('filter.products') }}">
-                    @foreach($categories as $category)
-                        <x-category-item :category="$category" />
-                    @endforeach
-                    <div class="price-filter">
-                        <label for="priceRange">
-                            Ціна: <span id="priceValue" data-max-price="{{ $maxPrice }}">{{ $maxPrice }}</span> $
-                        </label>
-                        <div class="price-range-display">
-                            <input type="number" id="minPriceInput" name="min_price" min="0" step="1.00" value="0" />
-                            —
-                            <input type="number" id="maxPriceInput" name="max_price" min="0" step="1.00" value="{{ $maxPrice }}" />
-                        </div>
-                        <div class="range-slider">
-                            <input type="range" id="priceRange" min="0" max="{{ $maxPrice }}" step="1.00" class="slider" value="{{ $maxPrice }}" />
-                        </div>
-                        <button type="submit" class="search-button">Застосувати</button>
+                @foreach($categories as $category)
+                    <x-category-item :category="$category"/>
+                @endforeach
+                <div class="price-filter">
+                    <label for="priceRange">
+                        Ціна: <span id="priceValue" data-max-price="{{ $maxPrice }}">{{ $maxPrice }}</span> $
+                    </label>
+                    <div class="price-range-display">
+                        <input type="number" id="minPriceInput" name="min_price" min="0" step="1" value="0" />
+                        —
+                        <input type="number" id="maxPriceInput" name="max_price" min="0" step="1" value="{{ $maxPrice }}" />
                     </div>
+                    <div class="range-slider">
+                        <input type="range" id="priceRange" min="0" max="{{ $maxPrice }}" step="1" class="slider" value="{{ $maxPrice }}" />
+                    </div>
+                    <button type="submit" class="search-button">Застосувати</button>
+                </div>
             </div>
         </div>
         <div class="all-products-section-container">
@@ -37,22 +37,22 @@
                         <input class="search-input all-products" type="text" placeholder="Я шукаю..." id="search-input" name="search" value="{{ request('search') }}"/>
                         <button type="submit" class="search-button">Пошук</button>
                     </div>
-                </form>
                 </div>
             </div>
+            </form>
             <div class="categories products-section" id="categories">
-            <div class="all-products-center-container">
-                <div class="all-products-section-lines">
-                @forelse($products as $product)
-                    <x-categorys-products-items :product="$product" />
-                @empty
+                <div class="all-products-center-container">
+                    <div class="all-products-section-lines">
+                    @forelse($products as $product)
+                        <x-categorys-products-items :product="$product" />
+                    @empty
+                    </div>
                 </div>
-            </div>
-            <p class="no-products">No products :(</p>
-            @endforelse
-            <div class="pagination-container">
-                {{ $products->links() }}
-            </div>
+                <p class="no-products">No products :(</p>
+                @endforelse
+                <div class="pagination-container">
+                    {{ $products->links() }}
+                </div>
             </div>
         </div>
     </div>
@@ -70,5 +70,4 @@
     </div>
 </main>
 @endsection
-
 

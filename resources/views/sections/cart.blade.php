@@ -12,7 +12,7 @@
     <div class="cart-products-container">
         @foreach($cart as $id => $item)
             <div class="cart-items">
-                <div class="cart-item">
+                <div class="cart-item-image">
                     <a href="{{ route('product', ['id' => $id]) }}">
                         <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}" class="cart-item-image">
                     </a>

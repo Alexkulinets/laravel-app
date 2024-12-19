@@ -49,6 +49,7 @@ class CartController extends Controller
 
         session()->put('discount_code', $discountCode); // зберігаємо код щоб мати змогу використовувати на різних сторінках 
 
+        
         return response()->json(['message' => 'Discount code saved to session']); // повідомлення про збереження коду знижки до сесії 
     }
 
