@@ -22,6 +22,8 @@ colorBoxes.forEach(box => {
 });
 
 
+
+
   const settingsBox = document.getElementById('productSpecificationHome');
   
   document.querySelectorAll('.section input[type="checkbox"]').forEach(checkbox => {

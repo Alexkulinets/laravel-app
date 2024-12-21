@@ -1306,7 +1306,7 @@ main.main-categories-container {
 }
 
 .card.all-products {
-  width: 300px;
+  width: auto;
   height: 420px;
 }
 
@@ -1491,7 +1491,8 @@ main.main-categories-container {
 .all-products-center-container {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .all-products-section-lines {
@@ -2099,7 +2100,6 @@ footer.footer {
     height: 500px;
   }
   .product-image {
-    height: 220px;
     width: auto;
     max-width: 100%;
     padding: 0 0 20px 0;

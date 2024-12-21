@@ -33,7 +33,8 @@ class ProductCategoriesTableSeeder extends Seeder
                 'updated_at' => now(),
             ];
         }
-                // Для категорії 4
+
+        // Для категорії 4
         for ($i = 13; $i <= 13; $i++) {
             $data[] = [
                 'category_id' => 4,
@@ -42,8 +43,9 @@ class ProductCategoriesTableSeeder extends Seeder
                 'updated_at' => now(),
             ];
         }
-                // Для категорії 5
-        for ($i = 14; $i <= 15; $i++) { 
+
+        // Для категорії 5
+        for ($i = 14; $i <= 17; $i++) { 
             $data[] = [
                 'category_id' => 5,
                 'product_id' => $i,
@@ -51,7 +53,8 @@ class ProductCategoriesTableSeeder extends Seeder
                 'updated_at' => now(),
             ];
         }
-                // Для категорії 7
+
+        // Для категорії 7
         for ($i = 14; $i <= 15; $i++) { 
             $data[] = [
                 'category_id' => 7,
@@ -61,8 +64,17 @@ class ProductCategoriesTableSeeder extends Seeder
             ];
         }
         
-        
-        // Вставка даних в таблицю
+        for ($i = 16; $i <= 16; $i++) { 
+            $data[] = [
+                'category_id' => 9,
+                'product_id' => $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+
+
         DB::table('product_categories')->insert($data);
     }
 }

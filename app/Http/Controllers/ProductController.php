@@ -16,7 +16,7 @@ class ProductController extends Controller
             return response()->json([
                 'image_name' => $product->name,
                 'image_price' => $product->price,
-                'image_url' => $product->image,
+                'image_url' => $image,
                 'image_description' => $product->description,
                 'image_full_description' => $product->full_description
             ]);
@@ -30,9 +30,13 @@ class ProductController extends Controller
     {
         // Отримуємо параметр 'id' з запиту
         $id = $request->query('id');
-        $product = DB::table('product')->where('id', $id)->first();
-
         $products = DB::table('product')->get(); 
+        foreach ($products as $product) {
+            $product->image = explode(';', $product->image);
+        }
+
+        $product = DB::table('product')->where('id', $id)->first();
+        $product->image = explode('; ', $product->image);
 
         // Перевіряємо, чи існує продукт з таким id
         if (!$product) {
@@ -49,4 +53,6 @@ class ProductController extends Controller
         // Передача даних у вигляд
         return view('sections.product', compact('product', 'breadcrumbs', 'products'));
     }
+
+
 }

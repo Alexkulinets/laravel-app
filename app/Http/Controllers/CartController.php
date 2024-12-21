@@ -23,6 +23,8 @@ class CartController extends Controller
             }
         }   
 
+        $product->image = explode('; ', $product->image);
+
         if (isset($cart[$id])) { 
             $cart[$id]['quantity']++; // якщо товар вже є то додаємо ще один такий же
         } else {

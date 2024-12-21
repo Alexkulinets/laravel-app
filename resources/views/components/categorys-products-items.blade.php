@@ -3,7 +3,7 @@
 <div class="all-products-products-section" data-price="{{ $product->price }}">
   <div class="card all-products">
     <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section image all-products">
-      <img src="{{ $product->image }}" class="product-image" alt="Product Image"/>
+      <img src="{{ $product->image[0] }}" class="product-image" alt="Product Image"/>
     </a>
     <div class="card-section all-products">
       <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section-name all-products" style="color: #000">

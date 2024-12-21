@@ -2,7 +2,7 @@
 
 <div class="card">
   <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section image">
-    <img src="{{ $product->image }}" class="card-product-image" alt="Product Image"/>
+    <img id="product-image" src="{{ $product->image[0] }}" alt="{{ $product->name }}" class="product-image">
   </a>
   <div class="card-section">
       <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section-name" style="color: #000">

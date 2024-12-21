@@ -61,6 +61,13 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'title' => 'Samsung',
+                'parent_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
         ]); 
     }
 }

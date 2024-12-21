@@ -7,5 +7,3 @@ import './components/cartSubmit.js';
 import './components/filterProducts.js';
 import './components/productSections.js';
 
-
-  

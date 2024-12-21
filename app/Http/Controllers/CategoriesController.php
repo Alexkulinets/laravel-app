@@ -14,20 +14,21 @@ class CategoriesController extends Controller
         $search = $request->input('search');
 
         $selectedCategories = request()->input('categories', []);
+        $categories = Category::tree()->get()->toTree();
         $categoryId = $request->input('category_id', 1);
 
         $minPrice = $request->input('min_price', 0);
         $maxPrice = $request->input('max_price', Product::max('price'));
         
         $query = Product::query();
+        $query->whereBetween('price', [$minPrice, $maxPrice]);
 
-      
+
         if ($categoryId && $categoryId != 1) {
             $query->whereHas('categories', function ($q) use ($categoryId) {
                 $q->where('category_id', $categoryId);
             });
         }
-
         
         if ($search) {
             $searchWords = array_filter(explode(' ', mb_strtolower(trim($search))));
@@ -38,13 +39,12 @@ class CategoriesController extends Controller
             });
         }
 
-        $query->whereBetween('price', [$minPrice, $maxPrice]);
-
 
         $products = $query->paginate(6)->appends($request->query());
-
- 
-        $categories = Category::tree()->get()->toTree();
+        
+        foreach ($products as $product) {
+            $product->image = explode('; ', $product->image);
+        }
 
 
         return view('sections.categories', [
@@ -57,3 +57,4 @@ class CategoriesController extends Controller
         ]);
     }
 }
+

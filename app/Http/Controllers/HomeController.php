@@ -14,10 +14,14 @@ class HomeController extends Controller
     {
         return view('sections.cart');  
     }
-    public function home()
+    public function home(Request $request)
     {
         $products = DB::table('product')->get();
         
-        return view('sections.home', ['products' => $products]);
+        foreach ($products as $product) {
+            $product->image = explode(';', $product->image);
+        }
+
+        return view('sections.home', compact('products'));
     }
 }

@@ -14,7 +14,7 @@
             <div class="cart-items">
                 <div class="cart-item-image">
                     <a href="{{ route('product', ['id' => $id]) }}">
-                        <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}" class="cart-item-image">
+                        <img src="{{ $item['image'][0] }}" alt="{{ $item['name'] }}" class="cart-item-image">
                     </a>
                 </div>
                 <div class="cart-item-details">

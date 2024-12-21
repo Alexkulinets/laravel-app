@@ -34,8 +34,8 @@
     <div class="product-content">
         <div class="product-section" id="product-info">
             <div class="product-section-container photo">
-                <a href="{{ route('home') }}#card" class="back-button product">←</a>
-                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="product-image">
+                <a href="javascript:void(0);" onclick="history.back();" class="back-button product">←</a>
+                <img id="product-image" src="{{ $product->image[0] }}" alt="{{ $product->name }}" class="product-image">
             </div>
             <div class="product-section-container description">
                 <a class="card-section-name" style="color: #000">
@@ -158,7 +158,7 @@
     </div>
     <div class="card-container-section">
         <div class="card-content">
-          @foreach($products as $product)
+            @foreach($products as $product)
                 <x-product-item :product="$product" />
             @endforeach
         </div>

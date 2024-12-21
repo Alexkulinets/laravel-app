@@ -50,9 +50,9 @@
                 </div>
                 <p class="no-products">No products :(</p>
                 @endforelse
-                <div class="pagination-container">
-                    {{ $products->links() }}
-                </div>
+            </div>
+            <div class="pagination-container">
+                {{ $products->links() }}
             </div>
         </div>
     </div>
