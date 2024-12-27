@@ -10,7 +10,7 @@
                 <img src="{{ file_exists(public_path($imagePath)) ? asset($imagePath) : asset('dist/categories-images/default-image-icon.svg') }}" alt="{{ $category->title }}">
             </div>
             {{ $category->title }}
-            <input type="radio" name="category_id" value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'checked' : '' }}>
+            <input type="radio" name="category_id" value="{{ $category->id == 1 ? 'all-products' : $category->id }}" {{ request('category_id') == ($category->id == 1 ? 'all-products' : $category->id) ? 'checked' : '' }}>
         </label>
     </div>
 </div>

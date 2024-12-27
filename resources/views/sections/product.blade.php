@@ -3,6 +3,19 @@
 
 @section('content')
 <main class="main-container-product">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>
+                        <span class="first-word">Error:</span>
+                        <br>
+                        {{ $error }}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <main class="product-section-footer">
         <div class="product-footer-nav-container">
             <ul class="breadcrumbs">
@@ -35,7 +48,18 @@
         <div class="product-section" id="product-info">
             <div class="product-section-container photo">
                 <a href="javascript:void(0);" onclick="history.back();" class="back-button product">←</a>
-                <img id="product-image" src="{{ $product->image[0] }}" alt="{{ $product->name }}" class="product-image">
+                <div class="product-image-container">
+                    <img id="product-image" src="{{ $product->image[0] }}" alt="{{ $product->name }}" class="product-image"  data-images="{{ json_encode($product->image) }}">
+                    <div class="product-slider-buttons-container">
+                        <button class="scroll-btn product-image left" id="prev-image-button">←</button>
+                        <button class="scroll-btn product-image right" id="next-image-button">→</button>
+                    </div>
+                </div>
+                <div class="product-thumbnails-container">
+                    @foreach ($product->image as $index => $image)
+                        <img src="{{ $image }}" alt="Thumbnail {{ $index }}" class="thumbnail-image" onclick="updateMainImage('{{ $image }}')">
+                    @endforeach
+                </div>
             </div>
             <div class="product-section-container description">
                 <a class="card-section-name" style="color: #000">
@@ -147,22 +171,21 @@
         </div>
     </div>    
 </main>
-
-<div class="card-container" id="card">
-    <div class="card-container-name">
-    Todays <span class="purple-span">Best Deals</span> for you!
-    </div>
-    <div class="card-nav-container">
-      <button class="scroll-btn left-btn">←</button>
-      <button class="scroll-btn right-btn">→</button>
-    </div>
-    <div class="card-container-section">
-        <div class="card-content">
-            @foreach($products as $product)
-                <x-product-item :product="$product" />
-            @endforeach
+<slider class="card-container" id="card">
+        <div class="card-container-name">
+                <span class="purple-span">Best</span> for you!
+            </div>
+            <div class="card-nav-container">
+                <button class="scroll-btn left-btn">←</button>
+                <button class="scroll-btn right-btn">→</button>
+            </div>
+            <div class="card-container-section">
+            <div class="card-content">
+                @foreach($products as $product)
+                    <x-product-item :product="$product" />
+                @endforeach
+            </div>
         </div>
-    </div>
-</div>
+</slider>
 @endsection
 

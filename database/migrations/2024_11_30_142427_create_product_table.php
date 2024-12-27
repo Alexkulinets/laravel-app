@@ -10,12 +10,15 @@ return new class extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->id(); 
+            
             $table->string('name'); 
             $table->decimal('price', 10, 2);
             $table->string('description'); 
             $table->text('full_description'); 
             $table->string('image'); 
-            $table->timestamps();
+
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

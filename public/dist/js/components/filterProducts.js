@@ -3,7 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const priceValue = document.getElementById("priceValue");
     const minPriceInput = document.getElementById("minPriceInput");
     const maxPriceInput = document.getElementById("maxPriceInput");
-    const maxProductPrice = parseInt(priceValue.dataset.maxPrice); // Отримуємо максимальну ціну з data-атрибуту
+    const maxProductPrice = priceValue ? priceValue.dataset.maxPrice : null;
+
+    if (!maxProductPrice) {
+        return; 
+    }
 
     let minPrice = 0;
     let maxPrice = maxProductPrice;

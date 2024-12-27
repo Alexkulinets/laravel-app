@@ -4,7 +4,7 @@
     <div class="categories-container" id="categories">
         <div class="categories-section-container">
             <div class="categories-name-nav">
-                <h1 class="categories-name">Categories<div class="close" onclick="closeButton">×</div></h1>
+                <h1 class="categories-name">Categories<div class="close">×</div></h1>
             </div>
             <div class="all-categories">
                 <form method="GET" action="{{ route('filter.products') }}">

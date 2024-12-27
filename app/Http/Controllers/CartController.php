@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request, $id)
-    {
+    public function addToCart(Request $request, $id){
         $product = DB::table('product')->where('id', $id)->first(); // витягуємо з дб
 
         if (!$product) {
@@ -44,8 +43,7 @@ class CartController extends Controller
     }
 
 
-    public function saveDiscountCode(Request $request) // потрібна для збереження промокоду в сесії 
-    {
+    public function saveDiscountCode(Request $request){
         $discountCode = $request->input('discount_code'); // отримуємо код з запиту (значення надходить з запиту який надіслалв кліент )
 
 
@@ -55,9 +53,7 @@ class CartController extends Controller
         return response()->json(['message' => 'Discount code saved to session']); // повідомлення про збереження коду знижки до сесії 
     }
 
-
-    public function applyDiscount(Request $request)
-    {
+    public function applyDiscount(Request $request){
         $request->session()->flash('discount_activated', 'Код активовано!');
         $cart = session()->get('cart', []); // знову отримуємо кошик 
 
@@ -97,8 +93,7 @@ class CartController extends Controller
 
     
     // метод для відображення кошика
-    public function showCart()
-    {
+    public function showCart(){
         $cart = session()->get('cart', []); // отримуємо кошик з сесії
         $discountCode = session()->get('discount_code', null); // отримуємо промокод з сесії 
 
@@ -107,17 +102,28 @@ class CartController extends Controller
 
 
     // функція для очищення кошика
-    public function clearCart()
-    {
+    public function clearCart(){
         session()->forget('cart'); // за допомогою метода forget видаляємо товар з сесії
         session()->forget('discount_applied'); // за допомогою метода forget видаляємо промокод з сесії
 
         return redirect()->route('cart')->with('success', 'Cart has been cleared!'); // перенаправлляжмо (перезавантажуємо кошик) без товарі (ма їх видалили вище:))
     }
 
+    public function updateItemQuantity(Request $request) {
+        $id = $request->input('id');
+        $quantity = $request->input('quantity');
+        $cart = session()->get('cart', []);
+    
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] = max(1, intval($quantity)); // Перевіряємо, що кількість не менше 1
+            session()->put('cart', $cart);
+        }
+    
+        return redirect()->route('cart')->with('success', 'Quantity updated!');
+    }
+
     // функція ввидалення товару по окремості
-    public function removeItem(Request $request)
-    {
+    public function removeItem(Request $request){
         $id = $request->input('id'); // отримуємо id-шник товару 
         $cart = session()->get('cart', []);  // отримуємо кошик з сесії 
         session()->forget('discount_applied'); // видаляємо активований промокод 
@@ -129,5 +135,4 @@ class CartController extends Controller
 
         return redirect()->back(); //повертаємо користувача назад 
     }
-
 }

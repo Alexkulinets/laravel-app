@@ -1,41 +1,52 @@
 document.querySelectorAll('.config-option').forEach(option => {
-option.addEventListener('click', () => {
-    document.querySelectorAll('.config-option').forEach(opt => {
-        opt.classList.remove('active');
-    });
-
-    option.classList.add('active');
-
-    const selectedMemorySize = option.getAttribute('data-config');
-    document.getElementById('selected-color-memory-size').textContent = selectedMemorySize;
-});
-
-
-const colorBoxes = document.querySelectorAll('.config-box');
-colorBoxes.forEach(box => {
-  box.addEventListener('click', function() {
-    colorBoxes.forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    const selectedColorName = this.getAttribute('data-config');
-    document.getElementById('selected-color-name').textContent = selectedColorName;
-  });
-});
-
-
-
-
+  const colorBoxes = document.querySelectorAll('.config-box');
   const settingsBox = document.getElementById('productSpecificationHome');
+  const firstCheckbox = document.querySelector('#section1');
+  const imageElement = document.getElementById('product-image');
+  const prevImageButton = document.getElementById('prev-image-button');
+  const nextImageButton = document.getElementById('next-image-button');  
+  const imagesData = imageElement.getAttribute('data-images');
+
+  option.addEventListener('click', () => {
+      document.querySelectorAll('.config-option').forEach(opt => {
+          opt.classList.remove('active');
+      });
+  
+      option.classList.add('active');
+  
+      const selectedMemorySize = option.getAttribute('data-config');
+      document.getElementById('selected-color-memory-size').textContent = selectedMemorySize;
+  });
+
+
+  colorBoxes.forEach(box => {
+    box.addEventListener('click', function() {
+      colorBoxes.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const selectedColorName = this.getAttribute('data-config');
+      document.getElementById('selected-color-name').textContent = selectedColorName;
+    });
+  });
+
   
   document.querySelectorAll('.section input[type="checkbox"]').forEach(checkbox => {
       checkbox.addEventListener('change', () => {
-          // Перевірка, чи активний 'section1'
-          if (checkbox.id === 'section1' && checkbox.checked) {
-              settingsBox.classList.remove('none');  // Показати settingsBox
-          } else {
-              settingsBox.classList.add('none');  // Сховати settingsBox
+  
+          if (checkbox.checked && !checkbox.previousChecked) {
+              checkbox.previousChecked = true;
+          } else if (!checkbox.checked) {
+              checkbox.checked = true; 
+              return;
           }
 
-          // Зміна видимості контенту залежно від вибраної секції
+
+          if (checkbox.id === 'section1' && checkbox.checked) {
+              settingsBox.classList.remove('none'); 
+          } else {
+              settingsBox.classList.add('none'); 
+          }
+
+
           if (checkbox.id === 'section1') {
               document.getElementById('product-info').style.display = 'flex';
               document.getElementById('product-specifications').style.display = 'none';
@@ -60,10 +71,49 @@ colorBoxes.forEach(box => {
           checkbox.nextElementSibling.classList.add('active');
       });
   });
-  const firstCheckbox = document.querySelector('#section1');
+
+
   if (firstCheckbox && firstCheckbox.checked) {
       settingsBox.classList.remove('none');
   } else {
       settingsBox.classList.add('none');
   }
+
+  
+  try {
+      const images = JSON.parse(imagesData);
+
+      if (images && Array.isArray(images)) {
+          let currentImageIndex = 0;  
+
+          const updateImage = () => {
+              imageElement.src = images[currentImageIndex];
+          };  
+
+
+          prevImageButton.addEventListener('click', () => {
+              currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; 
+              updateImage();
+          });  
+
+          nextImageButton.addEventListener('click', () => {
+              currentImageIndex = (currentImageIndex + 1) % images.length; 
+              updateImage();
+          });   
+
+          
+          updateImage();
+      } 
+      else {
+          console.error("Images array is not valid:", images);
+      }
+  } 
+
+  catch (error) {
+      console.error("JSON parse error:", error);
+  }  
+
+  window.updateMainImage = (imageUrl) => {
+      imageElement.src = imageUrl;
+  };
 });

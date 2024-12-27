@@ -9,13 +9,18 @@ use App\Models\Product;
 
 class CategoriesController extends Controller
 {
-    public function categories(Request $request)
-    {
+    public function categories(Request $request){
+        $request->validate([
+            'categoryId' => 'nullable|integer|exists:categories, id',
+            'minPrice' => 'nullable|numeric|min: 0',
+            'maxPrice' => 'nullable|numeric|min: 0'
+        ]);
+
         $search = $request->input('search');
 
         $selectedCategories = request()->input('categories', []);
         $categories = Category::tree()->get()->toTree();
-        $categoryId = $request->input('category_id', 1);
+        $categoryId = $request->input('category_id', 'all-products');
 
         $minPrice = $request->input('min_price', 0);
         $maxPrice = $request->input('max_price', Product::max('price'));
@@ -24,7 +29,7 @@ class CategoriesController extends Controller
         $query->whereBetween('price', [$minPrice, $maxPrice]);
 
 
-        if ($categoryId && $categoryId != 1) {
+        if ($categoryId != "all-products") {
             $query->whereHas('categories', function ($q) use ($categoryId) {
                 $q->where('category_id', $categoryId);
             });

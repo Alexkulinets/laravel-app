@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class ProductTableSeeder extends Seeder
 {
-    
 
     public function run(): void
     {
-
-
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('product')->truncate(); 
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+        
         DB::table('product')->insert([
             [
                 'name' => 'Apple iPhone 16',
@@ -94,9 +94,7 @@ class ProductTableSeeder extends Seeder
                                         "`Гарантія` *12 місяців*"
                                         "`Країна-виробник товару` *Китай*"
                                         "',
-                'image' => 'https://content2.rozetka.com.ua/goods/images/big/468886706.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'image' => 'https://content2.rozetka.com.ua/goods/images/big/468886706.jpg; https://content1.rozetka.com.ua/goods/images/big/468888137.jpg; https://content.rozetka.com.ua/goods/images/big/468888136.jpg',
             ],
             [
                 'name' => 'Apple iPhone 15',
@@ -176,8 +174,6 @@ class ProductTableSeeder extends Seeder
                                         "`Країна-виробник товару` *Китай*"
                                         ',
                 'image' => 'https://content1.rozetka.com.ua/goods/images/big/364623617.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'name' => 'Apple iPhone 14',
@@ -257,8 +253,6 @@ class ProductTableSeeder extends Seeder
                                                 "`Країна-виробник товару` *Китай*"
                                                 ',
                 'image' => 'https://content1.rozetka.com.ua/goods/images/big/284913534.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'name' => 'Apple iPhone 13',
@@ -338,8 +332,6 @@ class ProductTableSeeder extends Seeder
                                                 "`Країна-виробник товару` *Китай*"
                                                 ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/221214143.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'name' => 'Apple iPhone 12',
@@ -419,8 +411,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content1.rozetka.com.ua/goods/images/big/175435404.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'name' => 'Apple iPhone 11',
@@ -494,8 +484,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/37399220.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'name' => 'Apple iPhone 10',
@@ -569,8 +557,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/37399220.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ], 
             [
                 'name' => 'Apple iPhone 10',
@@ -644,8 +630,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/37399220.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ], 
             [
                 'name' => 'Apple iPhone 10',
@@ -719,8 +703,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/37399220.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ], 
             [
                 'name' => 'Apple iPhone 10',
@@ -794,8 +776,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/37399220.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ], 
             [
                 'name' => 'Apple iPhone 10',
@@ -869,8 +849,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/37399220.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ], 
             [
                 'name' => 'Apple iPhone 10',
@@ -944,8 +922,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/37399220.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ], 
             [
                 'name' => 'Google Pixel 8',
@@ -1019,8 +995,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content1.rozetka.com.ua/goods/images/big/446289086.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ], 
             [
                 'name' => 'Asus Vivobook Pro 15 Oled',
@@ -1094,8 +1068,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content1.rozetka.com.ua/goods/images/big/455804790.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ], 
             [
                 'name' => 'Asus Vivobook 16',
@@ -1169,8 +1141,6 @@ class ProductTableSeeder extends Seeder
                                             "`Країна-виробник товару` *Китай*"
                                             ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/334397470.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],  
             [
                 'name' => 'Samsung Laptop',
@@ -1226,13 +1196,10 @@ class ProductTableSeeder extends Seeder
                                             "`Гарантія` *12 місяців*"
                                             "`Країна-виробник товару` *Китай*"
                                         ',
-                'image' => 'https://content.rozetka.com.ua/goods/images/big/462276615.jpg; https://content1.rozetka.com.ua/goods/images/big/486175505.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'image' => 'https://content.rozetka.com.ua/goods/images/big/462276615.jpg; https://content1.rozetka.com.ua/goods/images/big/486175505.jpg; https://content1.rozetka.com.ua/goods/images/big/462276627.jpg; https://content2.rozetka.com.ua/goods/images/big/462276683.jpg',
             ],
             
   
         ]);
-
     }
 }

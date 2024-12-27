@@ -25,7 +25,12 @@
                         @endif
                         <span>${{ $item['price'] }}</span> 
                     </p>
-                    <p name="quantity">Quantity: {{ $item['quantity'] }}</p>
+                    <form action="{{ route('cart.update') }}" method="POST" class="update-quantity-form">
+                        @csrf
+                        <label for="quantity-{{ $id }}">Quantity:</label>
+                        <input type="hidden" name="id" value="{{ $id }}">
+                        <input type="number" id="quantity-{{ $id }}" name="quantity" value="{{ $item['quantity'] }}" min="1" class="quantity-input">
+                    </form>
                 </div>
                 <form action="{{ route('cart.remove') }}" method="POST">
                     @csrf
@@ -37,8 +42,8 @@
         <p class="cart-cost">Total: 
             ${{ array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $cart)) }}
         </p>
-        @if(session('discount_activated'))
-            <p>{{ session('discount_activated') }}</p>
+        @if(session('discount_applied'))
+            <p>Знижка успішно активована!</p>
         @else
             @if($discountCode)
                 <p>Ваш код знижки: {{ $discountCode }}</p>
@@ -62,7 +67,7 @@
             </div>
             <div class="form-group">
                 <label for="customer_phone">Ваш номер телефону</label>
-                <input type="text" name="customer_phone" name="customer_phone" required>
+                <input type="text" id="customer_phone" name="customer_phone" required>
             </div>
             @foreach($cart as $item)
                 <input type="hidden" name="product_name[]" value="{{ $item['name'] }}">

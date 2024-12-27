@@ -6,22 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id')->constrained()->onDelete('cascade');
-            $table->unsignedBigInteger('product_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+            
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('product_id');
+            
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
+
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('product_categories');

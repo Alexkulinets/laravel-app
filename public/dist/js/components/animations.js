@@ -22,21 +22,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    leftBtn.addEventListener('click', () => {
-        const scrollDistance = getScrollDistance();
-        cardContainerSection.scrollBy({
-            left: -scrollDistance,
-            behavior: 'smooth'
+    if (cardContainerSection && leftBtn && rightBtn) {
+        leftBtn.addEventListener('click', () => {
+            const scrollDistance = getScrollDistance();
+            cardContainerSection.scrollBy({
+                left: -scrollDistance,
+                behavior: 'smooth'
+            });
         });
-    });
-
-    rightBtn.addEventListener('click', () => {
-        const scrollDistance = getScrollDistance();
-        cardContainerSection.scrollBy({
-            left: scrollDistance,
-            behavior: 'smooth'
+    
+        rightBtn.addEventListener('click', () => {
+            const scrollDistance = getScrollDistance();
+            cardContainerSection.scrollBy({
+                left: scrollDistance,
+                behavior: 'smooth'
+            });
         });
-    });
+    }
 });
 
 

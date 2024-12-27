@@ -10,7 +10,8 @@ class ProductCategoriesTableSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('product_categories')->truncate(); 
+
+        DB::table('product_categories')->truncate();
 
         $data = [];
 
@@ -19,8 +20,6 @@ class ProductCategoriesTableSeeder extends Seeder
             $data[] = [
                 'category_id' => 2,
                 'product_id' => $i,
-                'created_at' => now(),
-                'updated_at' => now(),
             ];
         }
         
@@ -29,8 +28,6 @@ class ProductCategoriesTableSeeder extends Seeder
             $data[] = [
                 'category_id' => 3,
                 'product_id' => $i,
-                'created_at' => now(),
-                'updated_at' => now(),
             ];
         }
 
@@ -39,8 +36,6 @@ class ProductCategoriesTableSeeder extends Seeder
             $data[] = [
                 'category_id' => 4,
                 'product_id' => $i,
-                'created_at' => now(),
-                'updated_at' => now(),
             ];
         }
 
@@ -49,8 +44,6 @@ class ProductCategoriesTableSeeder extends Seeder
             $data[] = [
                 'category_id' => 5,
                 'product_id' => $i,
-                'created_at' => now(),
-                'updated_at' => now(),
             ];
         }
 
@@ -59,22 +52,20 @@ class ProductCategoriesTableSeeder extends Seeder
             $data[] = [
                 'category_id' => 7,
                 'product_id' => $i,
-                'created_at' => now(),
-                'updated_at' => now(),
             ];
         }
         
+        // Для категорії 9
         for ($i = 16; $i <= 16; $i++) { 
             $data[] = [
                 'category_id' => 9,
                 'product_id' => $i,
-                'created_at' => now(),
-                'updated_at' => now(),
             ];
         }
 
-
-
+        
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('product_categories')->insert($data);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

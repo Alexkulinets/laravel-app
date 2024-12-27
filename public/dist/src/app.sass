@@ -205,25 +205,34 @@ h6
   justify-content: space-between
 
 
-.navmenu 
+@keyframes circle-in-top-left
+  from
+    clip-path: circle(0% at top left)
+  to
+    clip-path: circle(125%)
+
+.navmenu
   top: 0
-  left: -100%
-  width: 500px
+  left: 0
+  width: 20%
   height: 100%
   position: fixed
   background-color: #fff
   flex-direction: column
-  padding: 12.5px
-  transition: left 0.3s ease
+  padding: 25px 5px
   display: flex
   z-index: 1000
+  clip-path: circle(0% at top left)
+  opacity: 0
+  visibility: hidden
+  transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out
+  border-radius: 0 0 40px 0
+  box-shadow: rgba(0, 0, 0, 0.1) 5px 5px 20px 0
 
-  
-.navmenu.open 
-  left: 0
-  width: 500px
-  display: flex
-
+  &.open
+    opacity: 1
+    visibility: visible
+    animation: 2s cubic-bezier(0.25, 1, 0.3, 1) circle-in-top-left forwards
 
 .navmenu ul 
   width: 150px
@@ -471,6 +480,27 @@ main.pricing-section
   height: auto
   padding: 30px 0
 
+.alert 
+  padding: 2.5px
+  position: fixed
+  z-index: 1005
+  bottom: 2.5vw
+  left: 2.5vw
+  width: auto
+  background: #ffbcbc
+  border-radius: 15px
+
+.alert > ul
+  list-style-type: none
+  color: #ff3737
+  font-size: 1.25em
+  font-weight: 600
+
+.first-word
+  font-size: 2em 
+  font-weight: bold
+
+
 .specification-section
   &.none
     display: none
@@ -495,6 +525,7 @@ main.pricing-section
 .product-section-container:nth-child(1)
   width: 750px
   margin-top: 20px
+
 .product-section-container:nth-child(2)
   padding: 40px 0
   width: 550px
@@ -502,15 +533,53 @@ main.pricing-section
 .product-section-container.photo
   position: sticky
   top: 150px
-  height: auto
+  height: 650px
   align-self: start 
-  
+
+.product-image-container
+  width: 100%
+  display: flex
+
+.product-slider-buttons-container
+  position: absolute
+  width: 90%
+  height: 50%
+  display: flex
+  justify-content: space-between
+  align-items: flex-end
+
+.scroll-btn.product-image
+  position: static
+  width: 37.5px
+  height: 37.5px
+  font-size: 27.5px
+  display: flex
+  align-items: flex-start
+
+.scroll-btn.product-image.left
+  top: 45%
+
+.scroll-btn.product-image.right
+  top: 45%
+  margin-left: 87.5%
+
 .product-image
   height: 100%
-  max-height: 500px
+  max-height: 420px
   width: 100%
   max-width: 90%
   object-fit: contain
+
+.product-thumbnails-container
+  width: 100%
+  height: 100px
+  display: flex
+  gap: 20px
+  
+.thumbnail-image
+  cursor: pointer
+  height: 50px
+
 
 .product-section-name
   display: flex
@@ -1115,6 +1184,9 @@ main.pricing-section
   padding: 0 25px
   box-shadow: rgba(0, 0, 0, 0.1) 5px 5px 20px 0
 
+.cart-item-details
+  width: 50%
+
 .cart-item-details p[name = 'price']
   color: orange
 
@@ -1184,6 +1256,11 @@ form
       font-size: 1rem
       transition: border-color 0.3s
 
+.update-quantity-form
+  width: 50px
+
+.update-quantity-form > input
+  width: 100%  
 
 
 button[type="submit"], button[type="button"]
@@ -2060,9 +2137,14 @@ footer.footer
   .review-section
     height: 500px
 
+  .product-section-container.photo
+    width: 100%
+    height: 500px
+
+  .product-image-container 
+    height: 360px
 
   .product-image
-    width: auto
     max-width: 100%
     padding: 0 0 20px 0
     display: flex
@@ -2666,8 +2748,12 @@ footer.footer
     margin-top: 90px
 
 
+  .product-section-container.photo
+    width: 425px
+    height: 500px
+
   .product-image
-    width: 320px
+    width: 100%
     height: 400px
 
 
@@ -2962,6 +3048,7 @@ footer.footer
 
   .navmenu.open 
     left: 0
+    width: 25%
 
 
   .navmenu
@@ -3281,6 +3368,9 @@ footer.footer
 
   .product-section-container.photo
     width: 350px
+
+  .product-section-container.photo
+    height: 650px
 
   .product-image
     height: 420px
