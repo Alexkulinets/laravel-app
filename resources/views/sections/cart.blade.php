@@ -6,16 +6,16 @@
 <main class="send-section">
     <div class="cart-nav-name-section">
         <h2>Your Cart</h2>
-        <a href="{{ route('home') }}#card" class="back-button product">←</a>
+        <a href="javascript:void(0);" onclick="history.back();" class="back-button product">←</a>
     </div>
     @if(count($cart) > 0)
     <div class="cart-products-container">
         @foreach($cart as $id => $item)
             <div class="cart-items">
                 <div class="cart-item-image">
-                    <a href="{{ route('product', ['id' => $id]) }}">
-                        <img src="{{ $item['image'][0] }}" alt="{{ $item['name'] }}" class="cart-item-image">
-                    </a>
+                <a href="{{ route('product', ['name' => $item['name']]) }}">
+                    <img src="{{ $item['image'][0] }}" alt="{{ $item['name'] }}" class="cart-item-image">
+                </a>
                 </div>
                 <div class="cart-item-details">
                     <p name="product_name">{{ $item['name'] }}</p>
@@ -53,8 +53,6 @@
                 </form>
             @endif
         @endif
-
-        <!-- Форма для оформлення замовлення -->
         <form action="{{ route('order.store') }}" method="POST" id="order-form">
             @csrf
             <div class="form-group">
@@ -69,11 +67,9 @@
                 <label for="customer_phone">Ваш номер телефону</label>
                 <input type="text" id="customer_phone" name="customer_phone" required>
             </div>
-            @foreach($cart as $item)
-                <input type="hidden" name="product_name[]" value="{{ $item['name'] }}">
-                <input type="hidden" name="quantity[]" value="{{ $item['quantity'] }}">
-                <input type="hidden" name="price[]" value="{{ $item['price'] }}">
-            @endforeach
+            <input type="hidden" name="product_name[]" value="{{ $item['name'] }}">
+            <input type="hidden" name="quantity[]" value="{{ $item['quantity'] }}">
+            <input type="hidden" name="price[]" value="{{ $item['price'] }}">
             <button type="submit" id="submitBtn">Замовити</button>
         </form>
     </div>

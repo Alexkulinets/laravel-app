@@ -2,20 +2,9 @@
 
 
 @section('content')
+<x-error-message />
+
 <main class="main-container-product">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>
-                        <span class="first-word">Error:</span>
-                        <br>
-                        {{ $error }}
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <main class="product-section-footer">
         <div class="product-footer-nav-container">
             <ul class="breadcrumbs">
@@ -97,18 +86,18 @@
                 <div class="product-bottom-cantainer">
                     <div class="card-section-stars">
                         <div class="star-box">
-                            <img src="./dist/img/star.svg" alt="" class="star">
-                            <img src="./dist/img/star.svg" alt="" class="star">
-                            <img src="./dist/img/star.svg" alt="" class="star">
-                            <img src="./dist/img/star.svg" alt="" class="star">
-                            <img src="./dist/img/star.svg" alt="" class="star">
+                            <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
+                            <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
+                            <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
+                            <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
+                            <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
                         </div>
                         <div class="amout card-section-description">(121)</div>
                     </div>
                     <a href="{{ route('review') }}" class="product-section-review">Залишити коментар</a>
                 </div>
                 <a href="{{ route('add.to.cart', $product->id) }}" class="card-section-add">
-                    <img src="./dist/img/cart.svg" alt="">
+                    <img src="{{ asset('./dist/img/cart.svg') }}" alt="">
                     Add to Cart
                 </a>
                 <div class="specification-main-container">
@@ -171,21 +160,13 @@
         </div>
     </div>    
 </main>
+
 <slider class="card-container" id="card">
-        <div class="card-container-name">
-                <span class="purple-span">Best</span> for you!
-            </div>
-            <div class="card-nav-container">
-                <button class="scroll-btn left-btn">←</button>
-                <button class="scroll-btn right-btn">→</button>
-            </div>
-            <div class="card-container-section">
-            <div class="card-content">
-                @foreach($products as $product)
-                    <x-product-item :product="$product" />
-                @endforeach
-            </div>
-        </div>
+    <div class="card-container-name">
+        <span class="purple-span">Other items</span> for you!
+    </div>
+    <x-products-slider :products="$products" />
 </slider>
+
 @endsection
 

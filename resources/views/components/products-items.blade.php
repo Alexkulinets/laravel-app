@@ -2,11 +2,11 @@
 
 <div class="all-products-products-section" data-price="{{ $product->price }}">
   <div class="card all-products">
-    <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section image all-products">
+    <a href="{{ route('product', ['name' => str_replace(' ', '-', $product->name)]) }}" class="card-section image all-products">
       <img src="{{ $product->image[0] }}" class="product-image" alt="Product Image"/>
     </a>
     <div class="card-section all-products">
-      <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section-name all-products" style="color: #000">
+      <a href="{{ route('product', ['name' => str_replace(' ', '-', $product->name)]) }}" class="card-section-name all-products" style="color: #000">
         <div>{{ $product->name }}</div>
         <div class="product-price">${{ $product->price }}</div>
       </a>
@@ -23,7 +23,7 @@
         </div>
         <div class="amount card-section-description">(121)</div>
       </div>
-      <a href="{{ route('product', ['id' => $product->id]) }}" class="card-section-add all-products">
+      <a href="{{ route('product', ['name' => str_replace(' ', '-', $product->name)]) }}" class="card-section-add all-products">
         <img src="./dist/img/cart.svg" alt="">
         Add to Cart
       </a>

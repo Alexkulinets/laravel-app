@@ -849,7 +849,6 @@ main.pricing-section
 //-----------card-section---------------------//
 .card-container
   width: 1200px
-  height: 950px
   display: flex
   flex-direction: column
   gap: 30px
@@ -876,7 +875,7 @@ main.pricing-section
 .card-container-section
   padding: 20px 0
   width: 100%
-  height: 635px
+  height: 525px
   overflow-x: hidden
   overflow-y: hidden
   cursor: grab
@@ -896,7 +895,7 @@ main.pricing-section
 
 
 .card
-  width: 420px
+  width: 250px
   height: auto
 
 
@@ -918,7 +917,7 @@ main.pricing-section
 
 .card-section:nth-child(1)
   width: 100%
-  height: 400px
+  height: 300px
   border-radius: 25px
   box-shadow: rgba(0, 0, 0, 0.1) 5px 5px 20px 0
   display: flex
@@ -936,7 +935,7 @@ main.pricing-section
   justify-content: space-between
   width: 100%
   height: 30px
-  font-size: 23px
+  font-size: 18px
   font-style: normal
   font-weight: 800
 
@@ -984,6 +983,28 @@ main.pricing-section
       filter: brightness(0) invert(1)
     
 
+.card.all-products
+  width: auto
+  height: 420px
+
+.card-section.all-products
+  width: 240px
+  height: 420px
+
+.card-section.all-products > img
+  width: 87.5%
+  height: 280px
+
+.card-section-description.all-products
+  font-size: 12px
+
+.card-section-name.all-products
+  font-size: 16px
+
+.card-section.image.all-products
+  width: 240px
+  height: 280px
+  
 .scroll-btn, .back-button 
   background-color: #fff
   border: none
@@ -998,7 +1019,6 @@ main.pricing-section
   margin: 20px 0
   transition: background-color 0.3s
 
-
 .back-button 
   margin: 0
   width: 50px
@@ -1006,11 +1026,9 @@ main.pricing-section
   font-size: 24px
   color: #000
 
-
 .scroll-btn:hover, .back-button:hover
   background-color: #f0f0f0
   color: #000
-
 //-----------popup-sections--------------------//      
 .popup
   position: fixed
@@ -1149,14 +1167,11 @@ main.pricing-section
   border-bottom: 150px solid transparent
   padding: 20px 0
 
-  
 .cart-section
   width: 50px
   height: 100%
   display: flex
   align-items: center
-
-
 
 .cart-item-image
   height: auto
@@ -1166,7 +1181,6 @@ main.pricing-section
   display: flex
   padding: 15px 0
   align-items: center
-
 
 .cart-products-container
   width: 100%
@@ -1289,11 +1303,11 @@ main.success
   flex-direction: column
   text-align: center
 
-
 .back-button.success
   width: auto
   border-radius: 10px
   padding: 20px 30px
+
 //-----------categories---------------------//
 main.main-categories-container
   width: 100%
@@ -1344,28 +1358,6 @@ main.main-categories-container
   grid-template-columns: repeat(3, 1fr)
   gap: 1rem
   box-sizing: border-box 
-
-.card.all-products
-  width: auto
-  height: 420px
-
-.card-section.all-products
-  width: 240px
-  height: 420px
-
-.card-section.all-products > img
-  width: 87.5%
-  height: 280px
-
-.card-section-description.all-products
-  font-size: 12px
-
-.card-section-name.all-products
-  font-size: 16px
-
-.card-section.image.all-products
-  width: 240px
-  height: 280px
   
 .child-container
   display: flex
@@ -1552,12 +1544,28 @@ main.main-categories-container
   width: 100%
   height: 100px
   border-bottom: 3px solid  var(--home-sec-bg)
-  padding: 0 10px 
   display: flex
   align-items: center
   gap: 20px
 
+.autocomplete-container 
+  top: 50px
+  position: absolute
+  width: 90%
+  background: white
+  z-index: 10
+  max-height: 200px
+  overflow-y: auto
 
+
+.autocomplete-item 
+  padding: 10px
+  cursor: pointer
+  border-bottom: 1px solid #eee
+
+
+.autocomplete-item:hover 
+  background-color: #f0f0f0
 
 div.close
   display: none
@@ -1612,7 +1620,8 @@ div.close
 
 .search-input.all-products:focus
   border: none
-  transform: scale(1.03)
+  border-radius: 15px 15px 0 0
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.752)
 
 .search-input.all-products:hover
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.552)
@@ -1632,7 +1641,6 @@ div.close
 
 
 //-------products-----paginations-----------//
-  
 .pagination-container
   margin-top: 20px
   width: 100%
@@ -1688,7 +1696,7 @@ ul.pagination
 .page-item.disabled, .small.text-muted
   display: none
 
-//-----------footer---------------------//
+//-----------footer--------------//
 
 footer.footer
   margin-top: 0px
@@ -1764,7 +1772,6 @@ footer.footer
 
 
 @media (max-width: 424px)
-
   .header .header-container 
     justify-content: center
     width: 300px
@@ -1983,17 +1990,15 @@ footer.footer
     width: 75px
     height: 75px
     font-size: 38px
-
-
+    
   .card-container-name
     font-size: 47px
     font-weight: 700
 
-
   .card-container-section
     padding: 20px 0
     width: 100%
-    height: 600px
+    height: 425px
     overflow-x: hidden
     overflow-y: hidden
     cursor: grab
@@ -2015,9 +2020,52 @@ footer.footer
     display: flex
     gap: 0
 
+  .card.all-products
+    width: 160px
 
-  .card
-    width: 230px
+  .card-section.all-products
+    gap: 3px
+
+  .card-section.all-products
+    width: 150px
+    height: 170px
+
+  .card-section.image.all-products
+    width: 155px
+    height: 190px
+    display: flex
+    flex-direction: row
+    align-items: flex-end
+
+  .card-section.image.all-products > img
+    height: 180px
+
+  .card-section-name.all-products
+    font-size: 12px
+
+  .card-section.image.all-products > .card-product-image
+    width: 140px
+    height: 160px
+
+  .card-section-stars > .amount.card-section-description
+    font-size: 12px
+
+  .star-box > img
+    width: 15px
+    height: 15px
+
+  .card-section-add.all-products
+    height: 40px
+    width: 100px
+    font-size: 12px
+    padding: 0
+
+  .card-section-add.all-products > img
+    display: none
+
+  .all-products-products-section
+    width: 160px
+    height: 180px
 
   .back-button 
     margin: 0
@@ -2026,11 +2074,9 @@ footer.footer
     font-size: 24px
     color: #000
 
-
   .scroll-btn:hover, .back-button:hover
     background-color: #f0f0f0
     color: #000
-
 
   .card-nav-container
     height: 75px
@@ -2045,7 +2091,6 @@ footer.footer
     font-size: 14px
     padding: 0px 
     display: flex
-
 
     &.show
       opacity: 1
@@ -2075,18 +2120,14 @@ footer.footer
       100% 
         left: 20px
   
-  
   .popup-content 
     padding: 15px
-  
 
   h2 
     font-size: 1.8rem
-  
 
   .timer 
     font-size: 1.2rem
-  
 
   button.close-popup 
     width: 35px
@@ -2278,62 +2319,6 @@ footer.footer
   .categories-button-container
     display: block
 
-
-    
-
-  .card.all-products
-    width: 160px
-
-  .card-section.all-products
-    gap: 3px
-
-  .card-section.all-products
-    width: 150px
-    height: 170px
-
-  .card-section.image.all-products
-    width: 155px
-    height: 190px
-    display: flex
-    flex-direction: row
-    align-items: flex-end
-
-  .card-section.image.all-products > img
-    height: 180px
-
-  .card-section-name.all-products
-    font-size: 12px
-
-  .card-section.image.all-products > .card-product-image
-    width: 140px
-    height: 160px
-
-  .card-section-stars > .amount.card-section-description
-    font-size: 12px
-
-
-  .star-box > img
-    width: 15px
-    height: 15px
-
-  .card-section-add.all-products
-    height: 40px
-    width: 100px
-    font-size: 12px
-    padding: 0
-
-  .card-section-add.all-products > img
-    display: none
-
-  .all-products-products-section
-    width: 160px
-    height: 180px
-
-  
-
-
-
-
   //-------products-----paginations-----------//
     
   .pagination-container
@@ -2345,7 +2330,7 @@ footer.footer
     justify-content: flex-end
     grid-column: 2
   
-  //footer-section-adaptive
+  //-------footer-section-adaptive-----------//
   
   footer.footer
     width: 300px
@@ -2599,9 +2584,8 @@ footer.footer
     font-size: 64px
     text-align: center
   //-----------card-section---------------------//
-
   .card-container
-    width: 368px
+    width: 100%
     height: auto
     display: flex
     flex-direction: column
@@ -2629,19 +2613,14 @@ footer.footer
   .card-container-section
     padding: 20px 0
     width: 100%
-    height: 600px
+    height: 700px
     overflow-x: hidden
     overflow-y: hidden
     cursor: grab
     scroll-behavior: smooth
 
-  .card-section:nth-child(1), .card-section:nth-child(2)
-    width: 220px
-    height: 300px
-
   .card-section-name
     font-size: 16px
-
 
   .card-product-image
     height: 270px
@@ -2652,9 +2631,48 @@ footer.footer
     display: flex
     gap: 0
 
+  .card.all-products
+    width: 50vw
+    height: auto
 
-  .card
-    width: 240px
+  .card-section.all-products
+    width: 45vw 
+    height: 40vw
+    gap: 1.5vw
+
+  .card-section.image.all-products
+    width: 45vw
+    height: 50vw
+
+  .card-section.image.all-products > img
+    width: auto
+    height: 47.5vw
+
+  .card-section.image.all-products > .card-product-image
+    width: 140px
+    height: 160px
+
+  .card-section-name.all-products
+    font-size: 3.25vw
+
+  .card-section-description.all-products
+    font-size: 2.75vw
+
+  .card-section-stars > .amount.card-section-description
+    font-size: 2.5vw
+
+  .star-box > img
+    width: 2.5vw
+    height: 2.5vw
+
+  .card-section-add.all-products
+    height: 7vw
+    width: 30vw
+    font-size: 12px
+    padding: 0
+
+  .card-section-add.all-products > img
+    display: none
 
   .back-button 
     margin: 0
@@ -2813,7 +2831,6 @@ footer.footer
     height: 20px
   //-----------categories-section-------------------// 
 
-
   .categories-box-text, .categories-name
     text-align: center
   
@@ -2828,7 +2845,6 @@ footer.footer
   .categories-container
     margin-top: 80px
     padding: 0
-
 
   .categories-section-container:first-child .categories-product-icon-container
     cursor: pointer 
@@ -2850,8 +2866,6 @@ footer.footer
     height: 100vh 
     overflow-y: auto
   
-    
-
   .categories-name
     width: 100%
     display: flex
@@ -2901,54 +2915,8 @@ footer.footer
     justify-content: flex-end
     grid-column: 2
 
-  .card.all-products
-    width: 50vw
-    height: auto
-
-  .card-section.all-products
-    width: 45vw 
-    height: 40vw
-    gap: 1.5vw
-
-  .card-section.image.all-products
-    width: 45vw
-    height: 50vw
-
-  .card-section.image.all-products > img
-    width: auto
-    height: 47.5vw
-
-
-  .card-section.image.all-products > .card-product-image
-    width: 140px
-    height: 160px
-
-  .card-section-name.all-products
-    font-size: 3.25vw
-
-  .card-section-description.all-products
-    font-size: 2.75vw
-
-  .card-section-stars > .amount.card-section-description
-    font-size: 2.5vw
-
-
-
-  .star-box > img
-    width: 2.5vw
-    height: 2.5vw
-
-  .card-section-add.all-products
-    height: 7vw
-    width: 30vw
-    font-size: 12px
-    padding: 0
-
-  .card-section-add.all-products > img
-    display: none
   
-  //footer-section-adaptive
-  
+  //-------footer-section-adaptive-----------//
   footer.footer
     width: 100%
     display: flex
@@ -3154,7 +3122,6 @@ footer.footer
   //-----------card-section---------------------//
   .card-container
     width: 724px
-    height: 950px
     display: flex
     flex-direction: column
     gap: 30px
@@ -3465,14 +3432,14 @@ footer.footer
     padding-bottom: 0
 
   .all-products-products-section
-    width: 30vw
+    width: 240px
     height: auto
 
   div.close
     display: block
 
   
-  //footer-section-adaptive
+  //-------footer-section-adaptive-----------//
   
   footer.footer
     display: flex

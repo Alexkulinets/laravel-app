@@ -16,7 +16,7 @@ class HomeController extends Controller
     }
     public function home(Request $request)
     {
-        $products = DB::table('product')->get();
+        $products = DB::table('products')->get();
         
         foreach ($products as $product) {
             $product->image = explode(';', $product->image);

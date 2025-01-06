@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Product;
+
+use Illuminate\Support\Facades\Validator;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,7 +11,7 @@ class ProductController extends Controller
 {
     public function getProductInfo(Request $request){
         $id = $request->input('id');
-        $product = DB::table('product')->where('id', $id)->first();
+        $product = DB::table('products')->where('id', $id)->first();
 
         if ($product) {
             return response()->json([
@@ -25,34 +27,33 @@ class ProductController extends Controller
         }
     }
 
-    public function show(Request $request) {
-        $request->validate([
-            'id' => 'required|integer|exists:product,id',
-        ]);
-        
+    public function show($name){
+        $validator = Validator::make(
+            ['name' => $name],
+            ['name' => 'required|string|regex:/^[a-zA-Z0-9\s-]+$/']
+        );
 
-        $id = $request->query('id');
-
-        
-
-        $products = DB::table('product')->get();
-        foreach ($products as $product) {
-            $product->image = explode(';', $product->image);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
         }
 
-    
-        $product = DB::table('product')->where('id', $id)->first();
+        $name = str_replace('-', ' ', $name);
+        $products = DB::table('products')->get();
+        foreach ($products as $productItem) {
+            $productItem->image = explode(';', $productItem->image);
+        }
+
+        $product = DB::table('products')->where('name', $name)->first();
+        if (!$product) {
+            return redirect()->route('home')->with('error', 'Product not found');
+        }
+
         $product->image = explode('; ', $product->image);
 
-        if (!$product) {
-            return redirect()->route('home')->with('error', 'Product not found,');
-        }
-
         $breadcrumbs = [
-            ['name' => 'Головна сторінка', 'url' => '/categories'],
+            ['name' => 'Головна сторінка', 'url' => '/catalog'],
             ['name' => $product->name, 'url' => null],
         ];
-    
 
         return view('sections.product', compact('product', 'breadcrumbs', 'products'));
     }

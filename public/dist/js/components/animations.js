@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function getScrollDistance() {
         const screenWidth = window.innerWidth;
 
-        if (screenWidth >= 1024) {
-            return 480; 
-        } else if (screenWidth >= 768) {
-            return 440;
+        if (screenWidth >= 1440) {
+            return 270;
+        } else if(screenWidth >= 767) {
+            return 380;
         } else {
-            return 330; 
+            return 160; 
         }
     }
 

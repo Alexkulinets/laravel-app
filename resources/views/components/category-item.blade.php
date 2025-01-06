@@ -1,6 +1,6 @@
 @props(['category'])
 
-<div class="categories-product-icon-container  {{ request('category_id') == $category->id ? 'active-category' : '' }}" >
+<div class="categories-product-icon-container  {{ request('category_id') == $category->id ? 'active-category' : '' }}"  >
     <div class="categories-box-text" style="font-size: 14px; font-weight: 400">
         <label style="display: flex; gap: 10px;">
             <div class="product-icons">

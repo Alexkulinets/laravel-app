@@ -26,7 +26,7 @@
             </a>
           </div>
           <a class="cart-route-position" href="{{ route('cart') }}">
-            <img class="cart-route-button" src="./dist/img/cart.svg" alt="">
+            <img class="cart-route-button" src="{{ asset('./dist/img/cart.svg') }}" alt="">
           </a>
           <nav id="navmenu" class="navmenu">
               <div class="register-login-section nav">
@@ -35,7 +35,7 @@
               </div>
               <ul>
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('categories') }}">Catalog</a></li>
+                <li><a href="{{ route('filter.products') }}">Catalog</a></li>
                 <li class="dropdown"><a href="{{ route('home') }}#events"><span>Events</span><i class="bi bi-chevron-down toggle-dropdown"></i></a></li>
                 <li><a href="{{ route('home') }}#contact">Contact</a></li>
               </ul>
@@ -46,15 +46,15 @@
       </div>
     </header>
 
-    
+
     @yield('content')
 
-
+    
     <footer class="footer" id="contact">
       <div class="footer-container">
         <div class="footer-section first">
           <a href="{{route('home')}}" class="logo">
-            <img class="elips" src="./dist/img/Elips.svg" alt="">
+            <img class="elips" src="{{ asset('./dist/img/Elips.svg') }}" alt="">
             <img src="{{ asset('./dist/main-images/Sphere_big.svg') }}" alt="">
           </a> 
           <h3 class="first-section text">

@@ -12,11 +12,11 @@ class ProductTableSeeder extends Seeder
     public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('product')->truncate(); 
+        DB::table('products')->truncate(); 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         
-        DB::table('product')->insert([
+        DB::table('products')->insert([
             [
                 'name' => 'Apple iPhone 16',
                 'price' => 579.00,
@@ -1198,8 +1198,8 @@ class ProductTableSeeder extends Seeder
                                         ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/462276615.jpg; https://content1.rozetka.com.ua/goods/images/big/486175505.jpg; https://content1.rozetka.com.ua/goods/images/big/462276627.jpg; https://content2.rozetka.com.ua/goods/images/big/462276683.jpg',
             ],
+
             
-  
         ]);
     }
 }

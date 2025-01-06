@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 class CartController extends Controller
 {
     public function addToCart(Request $request, $id){
-        $product = DB::table('product')->where('id', $id)->first(); // витягуємо з дб
+        $product = DB::table('products')->where('id', $id)->first(); // витягуємо з дб
 
         if (!$product) {
             return redirect()->route('home')->with('error', 'Product not found.'); // дивимось чи існує товар 

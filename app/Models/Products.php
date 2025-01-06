@@ -6,14 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
-class Product extends Model
+class Products extends Model
 {
     use HasFactory;
-    
-    public $timestamps = true; 
-    
-    protected $table = 'product';
 
+    protected $table = 'products';
     protected $fillable = [
         'name',
         'price',

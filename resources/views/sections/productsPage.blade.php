@@ -1,5 +1,7 @@
 @extends('main.main')
 @section('content')
+<x-error-message />
+
 <main class="main-categories-container">
     <div class="categories-container" id="categories">
         <div class="categories-section-container">
@@ -13,7 +15,7 @@
                 @endforeach
                 <div class="price-filter">
                     <label for="priceRange">
-                        Ціна: <span id="priceValue" data-max-price="{{ $maxPrice }}">{{ $maxPrice }}</span> $
+                        Price: <span id="priceValue" data-max-price="{{ $maxPrice }}">{{ $maxPrice }}</span> $
                     </label>
                     <div class="price-range-display">
                         <input type="number" id="minPriceInput" name="min_price" min="0" step="1" value="0" />
@@ -23,7 +25,7 @@
                     <div class="range-slider">
                         <input type="range" id="priceRange" min="0" max="{{ $maxPrice }}" step="1" class="slider" value="{{ $maxPrice }}" />
                     </div>
-                    <button type="submit" class="search-button">Застосувати</button>
+                    <button type="submit" class="search-button">Apply</button>
                 </div>
             </div>
         </div>
@@ -35,7 +37,7 @@
                 <div class="all-products-search-section">
                     <div class="search-container" style="width: 100%">
                         <input class="search-input all-products" type="text" placeholder="Я шукаю..." id="search-input" name="search" value="{{ request('search') }}"/>
-                        <button type="submit" class="search-button">Пошук</button>
+                        <button type="submit" class="search-button">Search</button>
                     </div>
                 </div>
             </div>
@@ -43,9 +45,9 @@
             <div class="categories products-section" id="categories">
                 <div class="all-products-center-container">
                     <div class="all-products-section-lines">
-                    @forelse($products as $product)
-                        <x-categorys-products-items :product="$product" />
-                    @empty
+                        @forelse($products as $product)
+                            <x-products-items :product="$product" />
+                        @empty
                     </div>
                 </div>
                 <p class="no-products">No products :(</p>
@@ -56,18 +58,8 @@
             </div>
         </div>
     </div>
-
-
-    <div id="discount-popup" class="popup">
-        <div class="popup-content">
-        <button class="close-popup">×</button>
-        <h2>Знижка на товар!</h2>
-        <p>Отримайте знижку протягом наступної години!</p>
-        <div class="timer" id="timer">60:00</div>
-        <button class="btn-get-discount">Отримати знижку</button>
-        <p id="discount-code" style="display:none;">Ваш код знижки: <span id="code"></span></p>
-        </div>
-    </div>
 </main>
+
+<x-discount-popup />
 @endsection
 

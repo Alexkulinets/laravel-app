@@ -1,6 +1,8 @@
 @extends('main.main')
 
 @section('content')
+
+
 <main class="home-section">
     <div class="home-section-container">
         <div class="home-grab-section">
@@ -15,7 +17,7 @@
             <div class="home-section-bottom-left">
                 <div class="home-sec-bottom-left-name">Lorem ipsum dolor sit amet consectetur. Eleifend nec morbi tellus vitae leo nunc.</div>
                 <div class="home-sec-bottom-left-image-box">
-                    <img  src="./dist/img/home_section_phone_image.png" alt="">
+                    <img  src="./dist/main-images/home_section_phone_image.png" alt="">
                     <h2 class="image-box-name">
                         Xiphone 14 
                         Edition
@@ -24,11 +26,10 @@
             </div>
         </div>
         <div class="home-image-section">
-            <img class="home-image-iphone" src="./dist/img/iphone-home-image.png" alt="" data-aos="fade-up" data-aos-duration="800">
+            <img class="home-image-iphone" src="./dist/main-images/iphone-home-image.png" alt="" data-aos="fade-up" data-aos-duration="800">
         </div>
     </div>
 </main>
-
 <div class="slider-container">
     <div class="slider-container-section">
         <div class="slider-section-name">
@@ -118,32 +119,12 @@
         </div>
     </div>
 </div>
-
-<div class="card-container" id="card">
+<slider class="card-container" id="card">
     <div class="card-container-name">
-    Todays <span class="purple-span">Best Deals</span> for you!
+        <span class="purple-span">Best items</span> for you!
     </div>
-    <div class="card-nav-container">
-      <button class="scroll-btn left-btn">←</button>
-      <button class="scroll-btn right-btn">→</button>
-    </div>
-    <div class="card-container-section">
-        <div class="card-content">
-            @foreach($products as $product)
-                <x-product-item :product="$product" />
-            @endforeach
-        </div>
-    </div>
-</div>
+    <x-products-slider :products="$products" />
+</slider>
 
-<div id="discount-popup" class="popup">
-    <div class="popup-content">
-      <button class="close-popup">×</button>
-      <h2>Знижка на товар!</h2>
-      <p>Отримайте знижку протягом наступної години!</p>
-      <div class="timer" id="timer">60:00</div>
-      <button class="btn-get-discount">Отримати знижку</button>
-      <p id="discount-code" style="display:none;">Ваш код знижки: <span id="code"></span></p>
-    </div>
-</div>
+<x-discount-popup />
 @endsection
