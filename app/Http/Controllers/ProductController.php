@@ -45,8 +45,9 @@ class ProductController extends Controller
 
         $product = DB::table('products')->where('name', $name)->first();
         if (!$product) {
-            return redirect()->route('home')->with('error', 'Product not found');
+            return redirect()->route('catalog')->with('error', 'Product not found');
         }
+        
 
         $product->image = explode('; ', $product->image);
 

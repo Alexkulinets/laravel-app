@@ -10,7 +10,7 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/review', [HomeController::class, 'review'])->name('review');
 
 
-Route::get('/catalog', [ProductsPageController::class, 'filterProducts'])->name('filter.products');
+Route::get('/catalog', [ProductsPageController::class, 'filterProducts'])->name('catalog');
 
 
 Route::get('/getImage', [ProductController::class, 'getProductInfo']);

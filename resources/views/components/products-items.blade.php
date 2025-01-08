@@ -15,16 +15,16 @@
       </h3>
       <div class="card-section-stars">
         <div class="star-box">
-          <img src="./dist/img/star.svg" alt="" class="star">
-          <img src="./dist/img/star.svg" alt="" class="star">
-          <img src="./dist/img/star.svg" alt="" class="star">
-          <img src="./dist/img/star.svg" alt="" class="star">
-          <img src="./dist/img/star.svg" alt="" class="star">
+          <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
+          <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
+          <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
+          <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
+          <img src="{{ asset('./dist/img/star.svg') }}" alt="" class="star">
         </div>
         <div class="amount card-section-description">(121)</div>
       </div>
       <a href="{{ route('product', ['name' => str_replace(' ', '-', $product->name)]) }}" class="card-section-add all-products">
-        <img src="./dist/img/cart.svg" alt="">
+        <img src="{{ asset('./dist/img/cart.svg') }}" alt="">
         Add to Cart
       </a>
     </div>

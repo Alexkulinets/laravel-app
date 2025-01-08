@@ -13,9 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let maxPrice = maxProductPrice;
 
 
-    // Функція для синхронізації значень полів
     const syncValues = () => {
-
         priceRange.min = minPrice;
         priceRange.max = maxProductPrice;
         priceRange.value = maxPrice;
@@ -30,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Оновлення URL
+
     const updateUrl = () => {
         const currentUrl = new URL(window.location);
         currentUrl.searchParams.set("min_price", minPrice);
@@ -47,10 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
         input.addEventListener("input", () => {
             const value = input.value === "" ? "" : parseInt(input.value);
             if (input === minPriceInput) {
-                minPrice = value || 0; // Якщо поле пусте, ставимо 0
+                minPrice = value || 0; 
             } else {
-                maxPrice = value || priceRange.max; // Якщо поле пусте, ставимо максимальне значення
-                priceRange.value = maxPrice || priceRange.max; // Оновлення повзунка
+                maxPrice = value || priceRange.max; 
+                priceRange.value = maxPrice || priceRange.max; 
             }
             updateUrl();
         });

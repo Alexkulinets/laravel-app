@@ -1581,22 +1581,16 @@ main.main-categories-container {
   width: 80%;
 }
 
-.all-products-center-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .all-products-section-lines {
   width: 100%;
   height: auto;
-  padding: 20px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  justify-content: center;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 200px 20px;
   padding-bottom: 150px;
+  left: 50%;
 }
 
 .all-products-products-section {
@@ -1687,16 +1681,38 @@ div.close {
 }
 
 .no-products {
+  position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5vw;
+  font-size: 3vw;
   color: var(--accent-color);
   font-weight: 600;
 }
 
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .search-input.all-products {
   width: 90%;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
@@ -2931,10 +2947,6 @@ footer.footer {
   .all-products-section-container {
     width: 100%;
   }
-  .all-products-center-container {
-    padding: 0 10px;
-    justify-content: center;
-  }
   .all-products-section-lines {
     width: 100%;
     height: auto;
@@ -3422,18 +3434,15 @@ footer.footer {
   .all-products-section-container {
     width: 100%;
   }
-  .all-products-center-container {
-    padding: 0 10px;
-    justify-content: center;
-  }
   .all-products-section-lines {
+    max-width: 100%;
     width: 100%;
     height: auto;
-    padding: 20px 0;
+    padding: 10px 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 3fr));
     padding-bottom: 0;
+    gap: 10px 0;
   }
   .all-products-products-section {
     width: 240px;

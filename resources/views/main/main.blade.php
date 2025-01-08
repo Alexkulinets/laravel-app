@@ -35,8 +35,8 @@
               </div>
               <ul>
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('filter.products') }}">Catalog</a></li>
-                <li class="dropdown"><a href="{{ route('home') }}#events"><span>Events</span><i class="bi bi-chevron-down toggle-dropdown"></i></a></li>
+                <li><a href="{{ route('catalog') }}">Catalog</a></li>
+                <li class="dropdown"><a href="{{ route('home') }}#events">Events</a></li>
                 <li><a href="{{ route('home') }}#contact">Contact</a></li>
               </ul>
               <div class="close-btn">×</div>
@@ -76,8 +76,8 @@
           </div>
           <div class="footer-second-box contact">
             <h1 class="second-box-name">Contact</h1>
-            <div class="second-box-text info"><img src="./dist/img/Telephone.svg" alt="">(+1) 123-456-789</div>
-            <div class="second-box-text info"><img src="./dist/img/Mail.svg" alt="">alex05alex03@gmail.com</div>
+            <div class="second-box-text info"><img src="{{ asset('./dist/img/Telephone.svg') }}" alt="">(+1) 123-456-789</div>
+            <div class="second-box-text info"><img src="{{ asset('./dist/img/Mail.svg') }}" alt="">alex05alex03@gmail.com</div>
           </div>
         </div>
       </div>

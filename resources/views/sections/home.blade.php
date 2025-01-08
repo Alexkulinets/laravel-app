@@ -1,7 +1,7 @@
 @extends('main.main')
 
 @section('content')
-
+<x-error-message />
 
 <main class="home-section">
     <div class="home-section-container">

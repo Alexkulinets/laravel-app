@@ -9,7 +9,7 @@
                 <h1 class="categories-name">Categories<div class="close">×</div></h1>
             </div>
             <div class="all-categories">
-                <form method="GET" action="{{ route('filter.products') }}">
+                <form method="GET" action="{{ route('catalog') }}">
                 @foreach($categories as $category)
                     <x-category-item :category="$category"/>
                 @endforeach
@@ -25,7 +25,7 @@
                     <div class="range-slider">
                         <input type="range" id="priceRange" min="0" max="{{ $maxPrice }}" step="1" class="slider" value="{{ $maxPrice }}" />
                     </div>
-                    <button type="submit" class="search-button">Apply</button>
+                    <button type="submit" class="search-button" id="apply-button">Apply</button>
                 </div>
             </div>
         </div>
@@ -37,24 +37,15 @@
                 <div class="all-products-search-section">
                     <div class="search-container" style="width: 100%">
                         <input class="search-input all-products" type="text" placeholder="Я шукаю..." id="search-input" name="search" value="{{ request('search') }}"/>
-                        <button type="submit" class="search-button">Search</button>
+                        <button type="submit" class="search-button" id="search-button">Search</button>
                     </div>
                 </div>
             </div>
             </form>
             <div class="categories products-section" id="categories">
-                <div class="all-products-center-container">
-                    <div class="all-products-section-lines">
-                        @forelse($products as $product)
-                            <x-products-items :product="$product" />
-                        @empty
-                    </div>
+                <div class="all-products-section-lines">
+                    <!-- components -> products-loader -->
                 </div>
-                <p class="no-products">No products :(</p>
-                @endforelse
-            </div>
-            <div class="pagination-container">
-                {{ $products->links() }}
             </div>
         </div>
     </div>

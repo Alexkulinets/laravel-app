@@ -1,7 +1,7 @@
 @extends('main.main')
 
-@section('title', 'Cart')
 @section('content')
+<x-error-message />
 
 <main class="send-section">
     <div class="cart-nav-name-section">
@@ -13,9 +13,9 @@
         @foreach($cart as $id => $item)
             <div class="cart-items">
                 <div class="cart-item-image">
-                <a href="{{ route('product', ['name' => $item['name']]) }}">
-                    <img src="{{ $item['image'][0] }}" alt="{{ $item['name'] }}" class="cart-item-image">
-                </a>
+                    <a href="{{ route('product', ['name' => str_replace(' ', '-', $item['name'])]) }}">
+                        <img src="{{ $item['image'][0] }}" alt="{{ $item['name'] }}" class="cart-item-image">
+                    </a>
                 </div>
                 <div class="cart-item-details">
                     <p name="product_name">{{ $item['name'] }}</p>
