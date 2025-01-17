@@ -1198,7 +1198,6 @@ class ProductTableSeeder extends Seeder
                                         ',
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/462276615.jpg; https://content1.rozetka.com.ua/goods/images/big/486175505.jpg; https://content1.rozetka.com.ua/goods/images/big/462276627.jpg; https://content2.rozetka.com.ua/goods/images/big/462276683.jpg',
             ],
-
             
         ]);
     }

@@ -10,10 +10,10 @@ use App\Models\Products;
 class ProductsPageController extends Controller
 {
     public function filterProducts(Request $request){
-        //Валідація
+
         $validator = Validator::make($request->all(), [
             'search' => 'nullable|string|max:255|regex:/^[\pL\pM\pN\s]+$/u',
-            'categoryId' => 'nullable|integer|exists:categories,id',
+            'categoryTitle' => 'nullable|string|exists:categories,id',
             'min_price' => 'nullable|numeric|min:0',
             'max_price' => 'nullable|numeric|min:0'
         ]);
@@ -28,7 +28,7 @@ class ProductsPageController extends Controller
         //Категорії
         $selectedCategories = request()->input('categories', []);
         $categories = Category::tree()->get()->toTree();
-        $categoryId = $request->input('category_id', 'all-products');
+        $categoryTitle = $request->input('category_id', 'All products');
 
         //Мінімальна та миксимальна ціна
         $minPrice = $request->input('min_price', 0);
@@ -40,9 +40,9 @@ class ProductsPageController extends Controller
 
 
         //Операції з категоріями
-        if ($categoryId != "all-products") {
-            $query->whereHas('categories', function ($q) use ($categoryId) {
-                $q->where('category_id', $categoryId);
+        if ($categoryTitle != "All products") {
+            $query->whereHas('categories', function ($q) use ($categoryTitle) {
+                $q->where('title', $categoryTitle);
             });
         }
 
@@ -92,7 +92,7 @@ class ProductsPageController extends Controller
             'search' => $search,
             'minPrice' => $minPrice,
             'maxPrice' => $maxPrice,
-            'categoryId' => $categoryId, 
+            'categoryTitle' => $categoryTitle, 
         ]);
     }
 }

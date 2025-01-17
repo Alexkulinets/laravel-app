@@ -10,60 +10,31 @@ class ProductCategoriesTableSeeder extends Seeder
 {
     public function run(): void
     {
-
         DB::table('product_categories')->truncate();
+
+        // Масив категорій та відповідних продуктів
+        $categories = [
+            2 => array_merge(range(1, 13)), 
+            3 => range(1, 12), 
+            4 => [13],        
+            5 => range(14, 17),
+            7 => range(14, 15), 
+            9 => [16],         
+        ];
 
         $data = [];
 
-        // Для категорії 2
-        for ($i = 1; $i <= 13; $i++) {
-            $data[] = [
-                'category_id' => 2,
-                'product_id' => $i,
-            ];
-        }
-        
-        // Для категорії 3
-        for ($i = 1; $i <= 12; $i++) {
-            $data[] = [
-                'category_id' => 3,
-                'product_id' => $i,
-            ];
+        // Для кожної категорії додаємо відповідні продукти
+        foreach ($categories as $categoryId => $productIds) {
+            foreach ($productIds as $productId) {
+                $data[] = [
+                    'category_id' => $categoryId,
+                    'product_id' => $productId,
+                ];
+            }
         }
 
-        // Для категорії 4
-        for ($i = 13; $i <= 13; $i++) {
-            $data[] = [
-                'category_id' => 4,
-                'product_id' => $i,
-            ];
-        }
-
-        // Для категорії 5
-        for ($i = 14; $i <= 17; $i++) { 
-            $data[] = [
-                'category_id' => 5,
-                'product_id' => $i,
-            ];
-        }
-
-        // Для категорії 7
-        for ($i = 14; $i <= 15; $i++) { 
-            $data[] = [
-                'category_id' => 7,
-                'product_id' => $i,
-            ];
-        }
-        
-        // Для категорії 9
-        for ($i = 16; $i <= 16; $i++) { 
-            $data[] = [
-                'category_id' => 9,
-                'product_id' => $i,
-            ];
-        }
-
-        
+        // Вставка даних у таблицю
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('product_categories')->insert($data);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

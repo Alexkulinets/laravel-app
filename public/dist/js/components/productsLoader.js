@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const applyButton = document.getElementById('apply-button');
     const searchButton = document.getElementById('search-button');
-    let previousCategory = getURLParam('category_id') || 'all-products';
-    let previousSearch = getURLParam('search') || '';
 
+    let previousCategory = getURLParam('category_id') || 'All products';
+    let previousSearch = getURLParam('search') || '';
     let isLoading = false;
 
     if (categoriesContainer && productsContainer) {
@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateFiltersAndFetch(selectedCategory = null, page = null) {
         if (!productsContainer || isLoading ) return;
 
-        const categoryId = selectedCategory || getURLParam('category_id') || 'all-products';
+        const categoryId = selectedCategory || getURLParam('category_id') || 'All products';
         const minPrice = minPriceInput?.value || 0;
         const maxPrice = maxPriceInput?.value || maxPriceInput?.getAttribute('max');
         const searchQuery = searchInput?.value || '';
         const currentPage = page || getURLParam('page') || 1;
 
-        if (minPrice < 0 || maxPrice < 0 || minPrice > maxPrice) {
+        if (!isValidPriceRange(minPrice, maxPrice)) {
             alert('Невірні значення цін.');
             return;
         }
@@ -67,15 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         history.replaceState(null, '', url);
 
-        productsContainer.innerHTML = '<p class="loader"></p>';
+        productsContainer.innerHTML = '<div class="loader"></div>';
         isLoading = true;
 
         fetchProducts(categoryId, minPrice, maxPrice, searchQuery, currentPage, productsContainer);
-    }
-
-    function getURLParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
     }
 
     function updatingSearch() {
@@ -83,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         if (newSearch !== previousSearch) {
             previousSearch = newSearch;
-            updateFiltersAndFetch('all-products', 1);  
+            updateFiltersAndFetch('All products', 1);  
         }else {
             updateFiltersAndFetch();
         }
@@ -134,6 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 productsContainer.innerHTML = '<p>Виникла помилка при завантаженні продуктів.</p>';
                 searchInput.value = ''; 
             });
+    }
+    
+    function getURLParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    function isValidPriceRange(minPrice, maxPrice) {
+        return minPrice >= 0 && maxPrice >= 0 && minPrice <= maxPrice;
     }
 
     if (productsContainer) {
